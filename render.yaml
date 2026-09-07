@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: porkbun-site
+    env: static
+    buildCommand: echo "No build needed"
+    staticPublishPath: ./
+    plan: free
+    region: oregon
+    domain: your-domain-here.com

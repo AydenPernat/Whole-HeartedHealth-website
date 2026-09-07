@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equic="X-IA-Compatible" content="IE=edge">
+    <meta name="Viewport" content="width-device-width, initial-scale=1.0">
+    <title>Admin Panel | WholeHeartedHealth</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section id="header">
+        <img src="img/logo.png" class="logo" alt="WholeHeartedHealth logo">
+
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="events.html">Upcoming Events</a></li>
+                <li id="nav-wishlist"><a href="wishlist.html"><i class="fa-solid fa-clipboard-list"></i></a></li>
+                <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a></li>
+            </ul>
+        </div>
+        <div id="mobile">
+            <button id="menu-toggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false"><i id="bar" class="fa-solid fa-bars"></i></button>
+        </div>
+    </section>
+
+    <section id="page-header" class="about-header">
+        <h2>Superior Admin Panel</h2>
+        <p>Add events and products without editing files</p>
+    </section>
+
+    <section class="section-p1" id="admin-panel">
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:20px;">
+            <div style="border:1px solid #e3e6f3; border-radius:12px; padding:16px;">
+                <h3 style="margin-bottom:12px;">Add Event</h3>
+                <form id="admin-event-form" style="display:grid; gap:10px;">
+                    <input id="admin-event-name" type="text" placeholder="Event name" required>
+                    <input id="admin-event-image-file" type="file" accept="image/*">
+                    <input id="admin-event-image" type="text" placeholder="Or image path (ex: img/events/event1.jpg)">
+                    <input id="admin-event-date" type="text" placeholder="Date (ex: June 5, 2026)" required>
+                    <input id="admin-event-time" type="text" placeholder="Time (ex: 7:00 PM - 9:00 PM)" required>
+                    <input id="admin-event-location" type="text" placeholder="Location" required>
+                    <textarea id="admin-event-description" placeholder="Event description" rows="4" required></textarea>
+                    <button class="normal" type="submit">Save Event</button>
+                </form>
+                <div id="admin-events-list" style="margin-top:14px;"></div>
+            </div>
+
+            <div style="border:1px solid #e3e6f3; border-radius:12px; padding:16px;">
+                <h3 style="margin-bottom:12px;">Add Product</h3>
+                <form id="admin-product-form" style="display:grid; gap:10px;">
+                    <input id="admin-product-name" type="text" placeholder="Product name" required>
+                    <input id="admin-product-price" type="number" step="0.01" min="0" placeholder="Price" required>
+                    <label style="font-size:13px; color:#666;">Product images (required: 4)</label>
+                    <input id="admin-product-image-file-1" type="file" accept="image/*" required>
+                    <input id="admin-product-image-file-2" type="file" accept="image/*" required>
+                    <input id="admin-product-image-file-3" type="file" accept="image/*" required>
+                    <input id="admin-product-image-file-4" type="file" accept="image/*" required>
+                    <input id="admin-product-category" type="text" placeholder="Category" required>
+                    <textarea id="admin-product-description" placeholder="Product description" rows="4" required></textarea>
+                    <button class="normal" type="submit">Save Product</button>
+                </form>
+                <div id="admin-products-list" style="margin-top:14px;"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="section-p1">
+        <div class="copyright">
+            <p>&copy; 2026, WholeHeartedHealth</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

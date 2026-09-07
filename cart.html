@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equic="X-IA-Compatible" content="IE=edge">
+    <meta name="Viewport" content="width-device-width, initial-scale=1.0">
+    <title>WholeHeartedHealth</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    
+    <section id="header">
+        <img src="img/logo.png" class="logo" alt="WholeHeartedHealth logo">
+
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>                <li><a href="events.html">Upcoming Events</a></li>
+                <li id="nav-wishlist"><a href="wishlist.html"><i class="fa-solid fa-clipboard-list"></i></a></li>                <li id="lg-bag"><a class="active" href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a></li>
+                </ul>
+        </div>
+        <div id="mobile">
+            <button id="menu-toggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false"><i id="bar" class="fa-solid fa-bars"></i></button>
+        </div>
+    </section>
+
+    <section id="page-header" class="about-header">
+        <h2>Contact us</h2>
+        <p>read all case studies about our products</p>
+    </section>
+
+    <section id="cart" class="section-p1">
+        <table width="100%">
+            <thead>
+                <tr>
+                    <td>Remove</td>
+                    <td>Image</td>
+                    <td>Product</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                    <td>Subtotal</td>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="cart-add" class="section-p1">
+        <div id="coupon">
+            <h3>Apply Coupon</h3>
+            <div>
+                <input type="text" placeholder="Enter Your Coupon">
+                <button class="normal">Apply</button>
+            </div>
+        </div>
+
+        <div id="subtotal">
+            <h3>Cart Totals</h3>
+            <table>
+                <tr>
+                    <td>Cart Subtotal</td>
+                    <td>$ 0.00</td>
+                </tr>
+                <tr id="saved-row" style="display: none;">
+                    <td>Savings</td>
+                    <td style="color: #c79a4a;"><strong>-$ 0.00</strong></td>
+                </tr>
+                <tr>
+                    <td>Shipping</td>
+                    <td>Free</td>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td><strong>$ 0.00</strong></td>
+                </tr>
+            </table>
+            <button class="normal">Proceed to Checkout</button>
+        </div>
+    </section>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 10000; justify-content: center; align-items: center;">
+        <div style="background: white; padding: 40px; border-radius: 10px; max-width: 500px; width: 90%;">
+            <h2>Payment Information</h2>
+            <p style="margin-bottom: 20px; color: #666;">Order Total: <strong>$<span id="payment-amount">0.00</span></strong></p>
+
+            <form id="payment-form">
+                <div style="margin-bottom: 20px;">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="John Doe" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-top: 5px; font-size: 14px;">
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label>Email</label>
+                    <input type="email" placeholder="john@example.com" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-top: 5px; font-size: 14px;">
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label>Payment Method</label>
+                    <select required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-top: 5px; font-size: 14px;">
+                        <option value="">Select Payment Method</option>
+                        <option value="credit-card">Credit Card</option>
+                        <option value="debit-card">Debit Card</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="apple-pay">Apple Pay</option>
+                        <option value="google-pay">Google Pay</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label>Card Number</label>
+                    <input type="text" placeholder="1234 5678 9012 3456" maxlength="19" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-top: 5px; font-size: 14px;">
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                    <div>
+                        <label>Expiry Date</label>
+                        <input type="text" placeholder="MM/YY" maxlength="5" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-top: 5px; font-size: 14px;">
+                    </div>
+                    <div>
+                        <label>CVV</label>
+                        <input type="text" placeholder="123" maxlength="3" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-top: 5px; font-size: 14px;">
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <button type="button" onclick="closePaymentModal()" style="padding: 12px; background: #ddd; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Cancel</button>
+                    <button type="submit" style="padding: 12px; background: #c79a4a; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Pay Now</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="section-p1">
+        <div class="col">
+                <a href="index.html"><img class="logo" src="img/309882121_5132988574724647418299_n.jpg" alt=""></a>
+                <h4>Contact</h4>
+                <p><strong>Address: </strong> W493Rockvale Road. Oconomowoc Wisconsin</p>
+                <p><strong>Phone: </strong> 920 860 6475</p>
+                <p><strong>Hours: </strong> last tuesday - second teusday of next week</p>
+                <div class="follow">
+                    <h4>Follow us</h4>
+                    <div class="icon">
+                        <i class="fab fa-facebook-f"></i>
+                        <i class="fab fa-twitter"></i>
+                         <i class="fab fa-instagram"></i>
+                        <i class="fab fa-pinterest-p"></i>
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                </div>
+        </div>
+
+        <div class="col">
+            <h4>About</h4>
+            <a href="about.html">About us</a>
+            <a href="#">Delivery Information</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms & Conditions</a>
+            <a href="contact.html">Contact us</a>
+        </div>
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="signin.html">Sign In</a>
+            <a href="cart.html">View Cart</a>
+            <a href="wishlist.html">My Wishlist</a>
+            <a href="track.html">Track My Order</a>
+            <a href="help.html">Help</a>
+        </div>
+
+        <div class="col install">
+            <h4>Install App</h4>
+            <p>From App Store or Google Play</p>
+            <div class="row">
+                <img src="img/pay/app.jpg" alt="">
+                <img src="img/pay/play.jpg" alt="">
+            </div>
+            <p>Secured Payment Gateways</p>
+            <img src="img/pay/pay.png" alt="">
+        </div>
+
+        <div class="col footer-newsletter">
+            <h4>Join our community</h4>
+            <p>Exclusive offers, early access and health tips â€” straight to your inbox.</p>
+            <div class="footer-news-form">
+                <input type="email" placeholder="Your email address" aria-label="newsletter email">
+                <button class="normal">Subscribe</button>
+            </div>
+            <small style="color:#666; display:block; margin-top:10px;">We respect your privacy. <a href="privacy.html">Learn more</a></small>
+        </div>
+
+        <div class="copyright">
+            <p>Â© 2026, WholeHeartedHealth</p>
+        </div>
+    </footer>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+
+
