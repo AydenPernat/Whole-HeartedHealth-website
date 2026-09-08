@@ -1,4 +1,4 @@
-﻿const menuButton = document.getElementById('menu-toggle');
+const menuButton = document.getElementById('menu-toggle');
 const bar = document.getElementById('bar');
 const nav = document.getElementById('navbar');
 
@@ -419,7 +419,11 @@ function signInUser(email, name) {
     updateAuthUI();
 }
 function signOutUser() {
+    try {
+        fetch('/api/auth/signout', { method: 'POST' });
+    } catch (e) {}
     localStorage.removeItem('w_user');
+    localStorage.removeItem('w_token');
     localStorage.removeItem('w_wishlist');
     updateAuthUI();
 }
@@ -427,6 +431,35 @@ function signOutUser() {
 function isSuperiorAccount() {
     const user = getCurrentUser();
     return !!(user && user.role === 'superior');
+}
+
+async function fetchGlobalProducts() {
+    try {
+        const res = await fetch('/api/products');
+        if (res.ok) {
+            const data = await res.json();
+            if (data && Array.isArray(data.products) && data.products.length > 0) {
+                products.length = 0;
+                data.products.forEach(p => products.push(p));
+                return data.products;
+            }
+        }
+    } catch (err) {}
+    return products;
+}
+
+async function fetchGlobalEvents() {
+    try {
+        const res = await fetch('/api/events');
+        if (res.ok) {
+            const data = await res.json();
+            if (data && Array.isArray(data.events) && data.events.length > 0) {
+                window.globalEvents = data.events;
+                return data.events;
+            }
+        }
+    } catch (err) {}
+    return getDefaultEvents();
 }
 
 function getCustomProducts() {
@@ -499,6 +532,9 @@ function saveCustomEvents(list) {
 }
 
 function getAllEvents() {
+    if (window.globalEvents && window.globalEvents.length > 0) {
+        return window.globalEvents;
+    }
     const defaults = getDefaultEvents();
     const custom = getCustomEvents();
     return defaults.concat(custom.filter(ev => !defaults.some(d => d.id === ev.id)));
@@ -573,14 +609,15 @@ function renderCustomProductsOnShop() {
     if (!shopContainer) return;
 
     shopContainer.querySelectorAll('.pro.custom-product-card').forEach(card => card.remove());
-    const custom = getCustomProducts();
+    const custom = products.filter(p => (typeof p.id === 'number' && p.id > 8) || typeof p.id === 'string');
 
     custom.forEach(p => {
         const card = document.createElement('div');
         card.className = 'pro custom-product-card';
         card.dataset.productId = String(p.id);
+        card.style.cursor = 'pointer';
         card.innerHTML = `
-            <img src="${escapeHTML(p.image)}" alt="${escapeHTML(p.name)}">
+            <img src="${escapeHTML(p.image)}" alt="${escapeHTML(p.name)}" style="cursor:pointer;">
             <div class="des">
                 <span>${escapeHTML(p.category || 'custom')}</span>
                 <h5>${escapeHTML(p.name)}</h5>
@@ -595,8 +632,56 @@ function renderCustomProductsOnShop() {
             </div>
             <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
         `;
+
+        card.addEventListener('click', (e) => {
+            if (e.target.classList.contains('cart') || e.target.closest('a') || 
+                e.target.classList.contains('btn-wishlist') || e.target.classList.contains('wishlist-remove-btn')) {
+                return;
+            }
+            window.location.href = `sproduct.html?id=${encodeURIComponent(p.id)}`;
+        });
+
+        const cartBtn = card.querySelector('.cart');
+        if (cartBtn) {
+            cartBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                cart.addItem(p);
+                showNotification(`${p.name} added to cart!`);
+                updateCartCount();
+            });
+        }
+
+        if (!isWishlistPage()) {
+            const wishBtn = document.createElement('button');
+            wishBtn.className = 'btn-wishlist';
+            wishBtn.type = 'button';
+            wishBtn.title = 'Add to wishlist';
+            wishBtn.innerHTML = '+';
+            wishBtn.style.cssText = 'position:absolute; top:10px; right:48px; border:none; background:transparent; font-size:20px; cursor:pointer; color:#777; font-weight:700;';
+            wishBtn.dataset.productId = String(p.id);
+            wishBtn.addEventListener('click', (ev) => {
+                ev.preventDefault();
+                ev.stopPropagation();
+                if (!isSignedIn()) {
+                    const redirectUrl = encodeURIComponent(window.location.pathname + window.location.search);
+                    window.location.href = `signin.html?redirect=${redirectUrl}`;
+                    return;
+                }
+                toggleWishlist(p);
+            });
+            card.appendChild(wishBtn);
+        }
+
         shopContainer.appendChild(card);
     });
+}
+
+function getAuthHeaders() {
+    const token = localStorage.getItem('w_token');
+    const headers = {};
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+    return headers;
 }
 
 function renderAdminLists() {
@@ -604,39 +689,57 @@ function renderAdminLists() {
     const productsList = document.getElementById('admin-products-list');
     if (!eventsList || !productsList) return;
 
-    const customEvents = getCustomEvents();
-    const customProducts = getCustomProducts();
+    const allEvents = getAllEvents();
 
-    eventsList.innerHTML = customEvents.length
-        ? customEvents.map((ev, idx) => `<div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid #eee; padding:8px 0;"><span>${escapeHTML(ev.name)}</span><button class="white" type="button" data-remove-event="${idx}">Remove</button></div>`).join('')
-        : '<small style="color:#777;">No custom events yet.</small>';
+    eventsList.innerHTML = allEvents.length
+        ? allEvents.map((ev) => `<div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid #eee; padding:8px 0;"><span>${escapeHTML(ev.name)}</span><button class="white" type="button" data-remove-event-id="${escapeHTML(ev.id)}">Remove</button></div>`).join('')
+        : '<small style="color:#777;">No events found.</small>';
 
-    productsList.innerHTML = customProducts.length
-        ? customProducts.map((p, idx) => `<div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid #eee; padding:8px 0;"><span>${escapeHTML(p.name)} ($${formatMoney(p.price || 0)})</span><button class="white" type="button" data-remove-product="${idx}">Remove</button></div>`).join('')
-        : '<small style="color:#777;">No custom products yet.</small>';
+    productsList.innerHTML = products.length
+        ? products.map((p) => `<div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid #eee; padding:8px 0;"><span>${escapeHTML(p.name)} ($${formatMoney(p.price || 0)})</span><button class="white" type="button" data-remove-product-id="${escapeHTML(String(p.id))}">Remove</button></div>`).join('')
+        : '<small style="color:#777;">No products found.</small>';
 
-    eventsList.querySelectorAll('[data-remove-event]').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const idx = Number(btn.dataset.removeEvent);
-            const list = getCustomEvents();
-            list.splice(idx, 1);
-            saveCustomEvents(list);
+    eventsList.querySelectorAll('[data-remove-event-id]').forEach(btn => {
+        btn.addEventListener('click', async () => {
+            const id = btn.dataset.removeEventId;
+            if (!confirm('Are you sure you want to remove this event globally?')) return;
+            try {
+                const res = await fetch(`/api/events/${encodeURIComponent(id)}`, {
+                    method: 'DELETE',
+                    headers: getAuthHeaders()
+                });
+                if (res.ok) {
+                    showNotification('Event removed.');
+                } else {
+                    showNotification('Could not remove event from server.');
+                }
+            } catch (err) {
+                showNotification('Network error removing event.');
+            }
+            await fetchGlobalEvents();
             renderAdminLists();
             renderEventsPage();
         });
     });
 
-    productsList.querySelectorAll('[data-remove-product]').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const idx = Number(btn.dataset.removeProduct);
-            const list = getCustomProducts();
-            const removed = list.splice(idx, 1);
-            saveCustomProducts(list);
-            if (removed.length) {
-                const removedId = removed[0].id;
-                const idxInProducts = products.findIndex(p => p.id === removedId);
-                if (idxInProducts !== -1) products.splice(idxInProducts, 1);
+    productsList.querySelectorAll('[data-remove-product-id]').forEach(btn => {
+        btn.addEventListener('click', async () => {
+            const id = btn.dataset.removeProductId;
+            if (!confirm('Are you sure you want to remove this product globally?')) return;
+            try {
+                const res = await fetch(`/api/products/${encodeURIComponent(id)}`, {
+                    method: 'DELETE',
+                    headers: getAuthHeaders()
+                });
+                if (res.ok) {
+                    showNotification('Product removed.');
+                } else {
+                    showNotification('Could not remove product from server.');
+                }
+            } catch (err) {
+                showNotification('Network error removing product.');
             }
+            await fetchGlobalProducts();
             renderAdminLists();
             renderCustomProductsOnShop();
         });
@@ -672,40 +775,43 @@ function renderAdminPage() {
             const time = (document.getElementById('admin-event-time')?.value || '').trim();
             const location = (document.getElementById('admin-event-location')?.value || '').trim();
             const description = (document.getElementById('admin-event-description')?.value || '').trim();
-            let image = imagePath;
 
-            if (imageFile) {
-                // Keep images reasonably small to avoid localStorage quota errors.
-                if (imageFile.size > 2 * 1024 * 1024) {
-                    showNotification('Image is too large. Use an image under 2MB.');
-                    return;
-                }
-                try {
-                    image = await fileToDataURL(imageFile);
-                } catch (err) {
-                    showNotification('Could not read selected event image.');
-                    return;
-                }
-            }
-
-            if (!name || !image || !date || !time || !location || !description) {
+            if (!name || (!imageFile && !imagePath) || !date || !time || !location || !description) {
                 showNotification('Please complete all event fields and provide an image.');
                 return;
             }
 
-            const id = `${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${Date.now()}`;
-            const list = getCustomEvents();
-            list.push({ id, name, image, date, time, location, description });
-            try {
-                saveCustomEvents(list);
-            } catch (err) {
-                showNotification('Could not save event. Storage might be full.');
-                return;
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('date', date);
+            formData.append('time', time);
+            formData.append('location', location);
+            formData.append('description', description);
+            if (imageFile) {
+                formData.append('imageFile', imageFile);
+            } else {
+                formData.append('image', imagePath);
             }
-            eventForm.reset();
-            showNotification('Event added.');
-            renderAdminLists();
-            renderEventsPage();
+
+            try {
+                const res = await fetch('/api/events', {
+                    method: 'POST',
+                    headers: getAuthHeaders(),
+                    body: formData
+                });
+                const data = await res.json();
+                if (!res.ok || !data.success) {
+                    showNotification(data.error || 'Could not save event to server.');
+                    return;
+                }
+                eventForm.reset();
+                showNotification('Event added globally for all visitors!');
+                await fetchGlobalEvents();
+                renderAdminLists();
+                renderEventsPage();
+            } catch (err) {
+                showNotification('Network error saving event.');
+            }
         });
     }
 
@@ -729,50 +835,39 @@ function renderAdminPage() {
                 return;
             }
 
-            for (const file of imageFiles) {
-                if (file.size > 2 * 1024 * 1024) {
-                    showNotification('Each image must be under 2MB.');
+            if (!name || !category || !description || !Number.isFinite(price) || price < 0) {
+                showNotification('Please complete all product fields correctly.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('price', String(price));
+            formData.append('category', category);
+            formData.append('description', description);
+            imageFiles.forEach((file, index) => {
+                if (file) formData.append(`image${index + 1}`, file);
+            });
+
+            try {
+                const res = await fetch('/api/products', {
+                    method: 'POST',
+                    headers: getAuthHeaders(),
+                    body: formData
+                });
+                const data = await res.json();
+                if (!res.ok || !data.success) {
+                    showNotification(data.error || 'Could not save product to server.');
                     return;
                 }
-            }
-
-            let gallery = [];
-            try {
-                gallery = await Promise.all(imageFiles.map(file => fileToDataURL(file)));
+                productForm.reset();
+                showNotification('Product added globally for all visitors!');
+                await fetchGlobalProducts();
+                renderAdminLists();
+                renderCustomProductsOnShop();
             } catch (err) {
-                showNotification('Could not read selected product images.');
-                return;
+                showNotification('Network error saving product.');
             }
-
-            if (!name || !category || !description || !Number.isFinite(price) || price < 0 || gallery.length !== 4) {
-                showNotification('Please complete all product fields correctly and add 4 images.');
-                return;
-            }
-
-            const maxId = products.reduce((m, p) => Math.max(m, Number(p.id) || 0), 0);
-            const product = {
-                id: maxId + 1,
-                name,
-                price,
-                image: gallery[0],
-                gallery,
-                category,
-                description
-            };
-
-            const list = getCustomProducts();
-            list.push(product);
-            try {
-                saveCustomProducts(list);
-            } catch (err) {
-                showNotification('Could not save product. Storage might be full.');
-                return;
-            }
-            products.push(product);
-            productForm.reset();
-            showNotification('Product added.');
-            renderAdminLists();
-            renderCustomProductsOnShop();
         });
     }
 
@@ -1103,7 +1198,13 @@ window.addEventListener('storage', (event) => {
 });
 
 // Initialize on page load
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        await Promise.allSettled([
+            fetchGlobalProducts(),
+            fetchGlobalEvents()
+        ]);
+    } catch (err) {}
     syncProductsFromStorage();
     renderCustomProductsOnShop();
     renderEventsPage();

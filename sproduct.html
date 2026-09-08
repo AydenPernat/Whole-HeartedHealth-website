@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -220,7 +220,17 @@
             return parseInt(params.get('id')) || 1;
         }
 
-        function getAllProductsForDetails() {
+        async function getAllProductsForDetails() {
+            try {
+                const res = await fetch('/api/products');
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && Array.isArray(data.products) && data.products.length > 0) {
+                        return data.products;
+                    }
+                }
+            } catch (err) {}
+
             const defaults = [
                 { id: 1, name: "Cartoon Astronaut Tshirt", price: 118.19, image: "img/products/f1.jpg", category: "tshirt" },
                 { id: 2, name: "Casual Wear", price: 95.00, image: "img/products/f1.jpg", category: "casual" },
@@ -231,15 +241,6 @@
                 { id: 7, name: "Elegant Style", price: 110.00, image: "img/products/f1.jpg", category: "elegant" },
                 { id: 8, name: "Comfort Plus", price: 99.99, image: "img/products/f1.jpg", category: "comfort" }
             ];
-
-            try {
-                const custom = JSON.parse(localStorage.getItem('w_custom_products') || '[]');
-                if (Array.isArray(custom)) {
-                    custom.forEach(p => {
-                        if (!defaults.some(dp => dp.id === p.id)) defaults.push(p);
-                    });
-                }
-            } catch (err) {}
 
             return defaults;
         }
@@ -252,26 +253,28 @@
             });
         }
 
-        function loadProductDetails() {
+        async function loadProductDetails() {
             const productId = getProductIdFromURL();
-            const allProducts = getAllProductsForDetails();
+            const allProducts = await getAllProductsForDetails();
             const product = allProducts.find(p => p.id === productId) || allProducts[0];
 
             if (product) {
-                const gallery = Array.isArray(product.gallery) && product.gallery.length >= 4
-                    ? product.gallery.slice(0, 4)
-                    : [product.image, product.image, product.image, product.image];
+                const gallery = (Array.isArray(product.images) && product.images.length > 0)
+                    ? product.images
+                    : (Array.isArray(product.gallery) && product.gallery.length > 0)
+                        ? product.gallery
+                        : [product.image, product.image, product.image, product.image];
 
                 document.title = product.name + " - WholeHeartedHealth";
-                document.getElementById('product-breadcrumb').textContent = `Home / ${product.category}`;
+                document.getElementById('product-breadcrumb').textContent = `Home / ${product.category || 'Shop'}`;
                 document.getElementById('product-name').textContent = product.name;
                 document.getElementById('product-price').textContent = `$${formatMoney(product.price)}`;
                 document.getElementById('product-description').textContent = product.description || `Premium quality ${product.name.toLowerCase()} from our collection. Experience comfort and style with this carefully selected product.`;
-                document.getElementById('MainImg').src = gallery[0];
+                document.getElementById('MainImg').src = gallery[0] || product.image;
 
                 const smallImgs = document.getElementsByClassName('small-img');
                 for (let i = 0; i < smallImgs.length; i++) {
-                    smallImgs[i].src = gallery[i] || gallery[0];
+                    smallImgs[i].src = gallery[i] || gallery[0] || product.image;
                 }
 
                 window.currentProduct = product;

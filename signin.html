@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -93,7 +93,7 @@
                 tabSign.addEventListener('click', showSign);
                 tabReg.addEventListener('click', showReg);
 
-                document.getElementById('signin-btn').addEventListener('click', function(e){
+                document.getElementById('signin-btn').addEventListener('click', async function(e){
                     e.preventDefault();
                     const email = document.getElementById('signin-email').value.trim();
                     const password = document.getElementById('signin-password').value;
@@ -102,19 +102,55 @@
                         return;
                     }
 
-                    const role = (email.toLowerCase() === SUPERIOR_EMAIL && password === SUPERIOR_PASSWORD) ? 'superior' : 'user';
-                    const name = email ? email.split('@')[0] : 'user';
-                    localStorage.setItem('w_user', JSON.stringify({ email, name, role }));
-                    window.location.href = redirect;
+                    try {
+                        const res = await fetch('/api/auth/signin', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ email, password })
+                        });
+                        const data = await res.json();
+                        if (!res.ok || !data.success) {
+                            alert(data.error || 'Sign in failed.');
+                            return;
+                        }
+                        localStorage.setItem('w_user', JSON.stringify(data.user));
+                        if (data.token) localStorage.setItem('w_token', data.token);
+                        window.location.href = redirect;
+                    } catch (err) {
+                        const role = (email.toLowerCase() === SUPERIOR_EMAIL && password === SUPERIOR_PASSWORD) ? 'superior' : 'user';
+                        const name = email ? email.split('@')[0] : 'user';
+                        localStorage.setItem('w_user', JSON.stringify({ email, name, role }));
+                        window.location.href = redirect;
+                    }
                 });
 
-                document.getElementById('register-btn').addEventListener('click', function(e){
+                document.getElementById('register-btn').addEventListener('click', async function(e){
                     e.preventDefault();
                     const email = document.getElementById('reg-email').value.trim();
                     const name = document.getElementById('reg-name').value.trim() || (email ? email.split('@')[0] : 'user');
-                    // simple mock register -> sign in
-                    localStorage.setItem('w_user', JSON.stringify({ email, name, role: 'user' }));
-                    window.location.href = redirect;
+                    const password = document.getElementById('reg-pass').value || '123456';
+                    if (!email) {
+                        alert('Please enter your email.');
+                        return;
+                    }
+
+                    try {
+                        const res = await fetch('/api/auth/signin', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ email, password })
+                        });
+                        const data = await res.json();
+                        if (data.user) {
+                            data.user.name = name;
+                            localStorage.setItem('w_user', JSON.stringify(data.user));
+                            if (data.token) localStorage.setItem('w_token', data.token);
+                        }
+                        window.location.href = redirect;
+                    } catch (err) {
+                        localStorage.setItem('w_user', JSON.stringify({ email, name, role: 'user' }));
+                        window.location.href = redirect;
+                    }
                 });
 
             })();

@@ -1,9 +1,12 @@
 services:
   - type: web
-    name: porkbun-site
-    env: static
-    buildCommand: echo "No build needed"
-    staticPublishPath: ./
+    name: wholeheartedhealth
+    env: node
     plan: free
-    region: oregon
-    domain: your-domain-here.com
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: ADMIN_EMAIL
+        value: qwerty@qwerty
+      - key: ADMIN_PASSWORD
+        value: "123456789"

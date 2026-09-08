@@ -1,0 +1,124 @@
+{
+    "products":  [
+                     {
+                         "id":  1,
+                         "name":  "Cartoon Astronaut Tshirt",
+                         "price":  118.19,
+                         "image":  "img/products/f1.jpg",
+                         "images":  [
+                                        "img/products/f1.jpg"
+                                    ],
+                         "category":  "tshirt",
+                         "description":  "Premium cotton comfortable graphic tshirt."
+                     },
+                     {
+                         "id":  2,
+                         "name":  "Casual Wear",
+                         "price":  95,
+                         "image":  "img/products/f1.jpg",
+                         "images":  [
+                                        "img/products/f1.jpg"
+                                    ],
+                         "category":  "casual",
+                         "description":  "Casual lightweight daily wear."
+                     },
+                     {
+                         "id":  3,
+                         "name":  "Summer Collection",
+                         "price":  125.5,
+                         "image":  "img/products/f1.jpg",
+                         "images":  [
+                                        "img/products/f1.jpg"
+                                    ],
+                         "category":  "summer",
+                         "description":  "Breathable summer collection wear."
+                     },
+                     {
+                         "id":  4,
+                         "name":  "Classic Design",
+                         "price":  89.99,
+                         "image":  "img/products/f1.jpg",
+                         "images":  [
+                                        "img/products/f1.jpg"
+                                    ],
+                         "category":  "classic",
+                         "description":  "Classic timeless design."
+                     },
+                     {
+                         "id":  5,
+                         "name":  "Modern Fashion",
+                         "price":  145,
+                         "image":  "img/products/f1.jpg",
+                         "images":  [
+                                        "img/products/f1.jpg"
+                                    ],
+                         "category":  "modern",
+                         "description":  "Modern fashion apparel."
+                     },
+                     {
+                         "id":  6,
+                         "name":  "Premium Wear",
+                         "price":  199.99,
+                         "image":  "img/products/f1.jpg",
+                         "images":  [
+                                        "img/products/f1.jpg"
+                                    ],
+                         "category":  "premium",
+                         "description":  "Luxury premium quality wear."
+                     },
+                     {
+                         "id":  7,
+                         "name":  "Elegant Style",
+                         "price":  110,
+                         "image":  "img/products/f1.jpg",
+                         "images":  [
+                                        "img/products/f1.jpg"
+                                    ],
+                         "category":  "elegant",
+                         "description":  "Elegant evening wear."
+                     },
+                     {
+                         "id":  8,
+                         "name":  "Comfort Plus",
+                         "price":  99.99,
+                         "image":  "img/products/f1.jpg",
+                         "images":  [
+                                        "img/products/f1.jpg"
+                                    ],
+                         "category":  "comfort",
+                         "description":  "Ultra comfortable relaxed fit."
+                     }
+                 ],
+    "events":  [
+                   {
+                       "id":  "spring-wellness-workshop",
+                       "name":  "Spring Wellness Workshop",
+                       "image":  "img/products/f1.jpg",
+                       "date":  "March 21, 2026",
+                       "time":  "10:00 AM - 12:00 PM",
+                       "location":  "WholeHeartedHealth Community Room",
+                       "description":  "This workshop covers simple routines for energy, stress balance, and daily nutrition planning. You will get a guided wellness session, a Q\u0026A block, and a take-home checklist for a 30-day reset."
+                   },
+                   {
+                       "id":  "nutrition-qa-night",
+                       "name":  "Nutrition Q\u0026A Night",
+                       "image":  "img/products/f2.jpg",
+                       "date":  "April 11, 2026",
+                       "time":  "6:30 PM - 8:00 PM",
+                       "location":  "Online Webinar + Live Chat",
+                       "description":  "Join our certified nutrition coaches for an open Q\u0026A session on gut health, clean pantry swaps, and easy meal prep ideas. Bring your questions and leave with actionable meal routines."
+                   },
+                   {
+                       "id":  "summer-product-preview",
+                       "name":  "Summer Product Preview",
+                       "image":  "img/products/f3.jpg",
+                       "date":  "May 3, 2026",
+                       "time":  "1:00 PM - 3:00 PM",
+                       "location":  "Main Storefront",
+                       "description":  "See upcoming seasonal products before launch and get first access signup at the event. Meet the team, test samples, and hear how each product fits into your routine."
+                   }
+               ],
+    "sessions":  [
+
+                 ]
+}
