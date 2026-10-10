@@ -96,3 +96,11 @@ Sign in with the owner email/password configured as `ADMIN_EMAIL` and `ADMIN_PAS
 Open `admin.html` and use the **Hamburger menu** editor to show or hide each link, choose its audience, switch between text and its icon, and move it up or down. The preview can show a visitor, signed-in customer, or administrator view. Click **Save menu** to apply changes across the website; **Reset to defaults** stages the default menu until saved.
 
 Hidden items occupy no menu space. Visibility controls menu links. Shop is the exception: hiding Shop, or limiting its audience, also hides shop links and collection sections for the affected visitors across the site. Direct page URLs and existing account/admin access rules remain unchanged. The administration item is always restricted to administrators. Settings are kept in the same local or PostgreSQL state as the rest of the site and are included in encrypted backups.
+
+## Clean page URLs and newsletter links
+
+Pages use extensionless URLs such as `/shop`, `/signin` and `/profile`. Existing `.html` links redirect permanently while preserving query parameters, including verification, recovery, payment and unsubscribe tokens. Deploy the updated server, frontend scripts and HTML pages together.
+
+Newsletter emails include an HTML footer whose clickable text is **Unsubscribe**, plus a plain-text fallback for email clients that cannot display HTML. Newsletter message content is escaped before insertion into HTML.
+
+For local preview, use an empty `DATABASE_URL` (JSON storage) and `PUBLIC_BASE_URL=http://localhost:3000`. Render internal database hostnames only resolve inside Render; use its external URL and appropriate SSL settings if intentionally connecting from outside Render. Explicit environment settings, including an empty database URL, take precedence over `.env`.

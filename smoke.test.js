@@ -114,6 +114,9 @@ test('authentication, private files, and checkout use server-side data', async (
         assert.equal((await request('/api/newsletter/unsubscribe', {email:'reader@example.test'})).status, 400);
         const newsletter = await request('/api/admin/newsletter', {subject:'News', message:'A new community update.'}, owner);
         assert.equal((await newsletter.json()).sent, 1);
+        assert.match(emails.at(-1).html, /<a href="[^"]+\/profile\?unsubscribe=[^"]+"[^>]*>Unsubscribe<\/a>/);
+        assert.ok(!emails.at(-1).html.includes('Unsubscribe:'));
+        assert.ok(!emails.at(-1).html.includes('/profile.html')); 
         assert.equal((await request('/api/newsletter/unsubscribe', {token:tokenFromLastEmail()})).status, 200);
         await request('/api/auth/forgot-password', {email:'customer@example.test'});
         const reset = tokenFromLastEmail();

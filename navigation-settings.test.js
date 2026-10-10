@@ -41,7 +41,8 @@ test('menu settings validate audience and ordering, persist through other writes
   const invalid = structuredClone(edited);invalid[1].presentation='script';assert.equal((await save(invalid,owner)).status,400);
   assert.deepEqual((await get('/api/navigation')).navigation,edited);
   const injected = structuredClone(edited);injected[0].url='https://example.test';assert.equal((await save(injected,owner)).status,200);
-  assert.equal((await get('/api/navigation')).navigation[0].url,'admin.html');
+  assert.equal((await get('/api/navigation')).navigation[0].url,'admin');
   const dashboard=await (await fetch(base+'/api/admin/dashboard',{headers:{Cookie:owner}})).json();assert.deepEqual(dashboard.navigationDefaults,defaults);
  } finally {await new Promise(resolve=>server.close(resolve));assert.equal(path.dirname(path.resolve(directory)),path.resolve(os.tmpdir()));fs.rmSync(directory,{recursive:true,force:true});}
 });
+

@@ -23,25 +23,25 @@
 
     <header id="header">
 
-        <a class="brand-link" href="index.html"><img src="img/logo3.png" class="logo" alt="Whole-Hearted Health home"></a>
+        <a class="brand-link" href="index"><img src="img/logo3.png" class="logo" alt="Whole-Hearted Health home"></a>
 
         <div>
 
             <ul id="navbar">
 
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index">Home</a></li>
 
-                <li><a href="shop.html">Shop</a></li>
+                <li><a href="shop">Shop</a></li>
 
-                <li><a href="about.html">About</a></li>
+                <li><a href="about">About</a></li>
 
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact">Contact</a></li>
 
-                <li><a href="events.html">Upcoming Events</a></li>
+                <li><a href="events">Upcoming Events</a></li>
 
-                <li id="nav-wishlist"><a href="wishlist.html" aria-label="Wishlist"><i class="fa-solid fa-clipboard-list"></i></a></li>
+                <li id="nav-wishlist"><a href="wishlist" aria-label="Wishlist"><i class="fa-solid fa-clipboard-list"></i></a></li>
 
-                <li id="lg-bag"><a href="cart.html" aria-label="Shopping bag"><i class="fa-solid fa-bag-shopping"></i></a></li>
+                <li id="lg-bag"><a href="cart" aria-label="Shopping bag"><i class="fa-solid fa-bag-shopping"></i></a></li>
 
                 </ul>
 
@@ -146,15 +146,16 @@
 
                 const qs = new URLSearchParams(window.location.search);
 
-                const allowedDestinations = new Set(['index.html','shop.html','cart.html','wishlist.html','profile.html','portal.html','admin.html','contact.html','events.html','about.html','help.html','sproduct.html','event-detail.html','privacy.html','terms.html']);
+                const allowedDestinations = new Set(['index','shop','cart','wishlist','profile','portal','admin','contact','events','about','help','sproduct','event-detail','privacy','terms']);
                 function getSignInDestination(requested) {
                     try {
-                        const target = new URL(requested || 'profile.html', location.href);
-                        const aliases = {'/track.html':'/portal.html','/blog.html':'/events.html'};
+                        const target = new URL(requested || 'profile', location.href);
+                        target.pathname = target.pathname.replace(/\.html$/, '');
+                        const aliases = {'/track':'/profile','/portal':'/profile','/blog':'/events'};
                         if (aliases[target.pathname]) target.pathname = aliases[target.pathname];
-                        if (target.origin !== location.origin || !allowedDestinations.has(target.pathname.slice(1))) return 'profile.html';
+                        if (target.origin !== location.origin || !allowedDestinations.has(target.pathname.slice(1))) return 'profile';
                         return target.pathname + target.search + target.hash;
-                    } catch { return 'profile.html'; }
+                    } catch { return 'profile'; }
                 }
                 const redirect = getSignInDestination(qs.get('redirect'));
 
@@ -170,7 +171,7 @@
                 const say = (text, error = false) => { message.textContent = text; message.classList.toggle('error', error); };
                 async function signIn(email, password) {
                     if (location.protocol === 'file:') {
-                        throw new Error('Sign-in needs the running website server. Open http://localhost:3000/signin.html instead of opening this HTML file directly.');
+                        throw new Error('Sign-in needs the running website server. Open http://localhost:3000/signin instead of opening this HTML file directly.');
                     }
                     let response;
                     try {
@@ -180,16 +181,16 @@
                             body: JSON.stringify({ email, password })
                         });
                     } catch {
-                        throw new Error('Could not reach the sign-in server. If you are running locally, start it with npm start and open http://localhost:3000/signin.html.');
+                        throw new Error('Could not reach the sign-in server. If you are running locally, start it with npm start and open http://localhost:3000/signin.');
                     }
                     if (!(response.headers.get('content-type') || '').includes('application/json')) {
-                        throw new Error('This address is not serving the sign-in API. Locally, use http://localhost:3000/signin.html. On Render, deploy this project as a Node web service, not a static site.');
+                        throw new Error('This address is not serving the sign-in API. Locally, use http://localhost:3000/signin. On Render, deploy this project as a Node web service, not a static site.');
                     }
                     const data = await response.json();
                     if (!response.ok || !data.success) throw new Error(data.error || 'Sign in failed. Please try again.');
                     return data.user;
                 }
-                if (location.protocol === 'file:') say('Accounts require the server. Open http://localhost:3000/signin.html after running npm start.', true);
+                if (location.protocol === 'file:') say('Accounts require the server. Open http://localhost:3000/signin after running npm start.', true);
 
 
                 function showSign(){ tabSign.classList.add('active'); tabReg.classList.remove('active'); signPanel.style.display='block'; regPanel.style.display='none'; resetPanel.style.display='none'; }
@@ -323,10 +324,10 @@
 
     </main>
 <footer class="section-p1 site-footer">
-<div class="col"><a class="footer-brand" href="index.html">Whole-Hearted Health<span>Room for a little more well-being.</span></a><p>Explore our shop, connect with our community,<br>and find your own everyday rhythm.</p></div>
-<div class="col"><h4>Explore</h4><a href="shop.html">Shop</a><a href="events.html">Events</a><a href="about.html">Our story</a><a href="contact.html">Get in touch</a></div>
-<div class="col"><h4>Your space</h4><a href="profile.html">Your portal</a><a href="profile.html#profile-settings">Account settings</a><a href="help.html">Help &amp; ordering</a></div>
-<div class="copyright"><p>&copy; 2026 Whole-Hearted Health</p><div><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div></footer>
+<div class="col"><a class="footer-brand" href="index">Whole-Hearted Health<span>Room for a little more well-being.</span></a><p>Explore our shop, connect with our community,<br>and find your own everyday rhythm.</p></div>
+<div class="col"><h4>Explore</h4><a href="shop">Shop</a><a href="events">Events</a><a href="about">Our story</a><a href="contact">Get in touch</a></div>
+<div class="col"><h4>Your space</h4><a href="profile">Your portal</a><a href="profile#profile-settings">Account settings</a><a href="help">Help &amp; ordering</a></div>
+<div class="copyright"><p>&copy; 2026 Whole-Hearted Health</p><div><a href="privacy">Privacy</a><a href="terms">Terms</a></div></div></footer>
 
     <script src="script.js"></script>
 

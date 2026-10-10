@@ -12,7 +12,7 @@ const { Pool } = require('pg');
 try {
     if (process.env.NODE_ENV !== 'test') fs.readFileSync(path.join(__dirname, '.env'), 'utf8').split(/\r?\n/).forEach(line => {
         const match = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*?)\s*$/);
-        if (match && !process.env[match[1]]) {
+        if (match && process.env[match[1]] === undefined) {
             process.env[match[1]] = match[2].replace(/^['"]|['"]$/g, '');
         }
     });
@@ -212,7 +212,7 @@ const MENU_CATALOG = [
         "presentation": "text",
         "id": "home",
         "label": "Home",
-        "url": "index.html",
+        "url": "index",
         "icon": "fa-house"
     },
     {
@@ -221,7 +221,7 @@ const MENU_CATALOG = [
         "presentation": "text",
         "id": "shop",
         "label": "Shop",
-        "url": "shop.html",
+        "url": "shop",
         "icon": "fa-store"
     },
     {
@@ -230,7 +230,7 @@ const MENU_CATALOG = [
         "presentation": "text",
         "id": "about",
         "label": "About",
-        "url": "about.html",
+        "url": "about",
         "icon": "fa-heart"
     },
     {
@@ -239,7 +239,7 @@ const MENU_CATALOG = [
         "presentation": "text",
         "id": "contact",
         "label": "Contact",
-        "url": "contact.html",
+        "url": "contact",
         "icon": "fa-envelope"
     },
     {
@@ -248,7 +248,7 @@ const MENU_CATALOG = [
         "presentation": "text",
         "id": "events",
         "label": "Upcoming Events",
-        "url": "events.html",
+        "url": "events",
         "icon": "fa-calendar-days"
     },
     {
@@ -257,7 +257,7 @@ const MENU_CATALOG = [
         "presentation": "icon",
         "id": "wishlist",
         "label": "Wishlist",
-        "url": "wishlist.html",
+        "url": "wishlist",
         "icon": "fa-clipboard-list"
     },
     {
@@ -266,7 +266,7 @@ const MENU_CATALOG = [
         "presentation": "icon",
         "id": "cart",
         "label": "Shopping bag",
-        "url": "cart.html",
+        "url": "cart",
         "icon": "fa-bag-shopping"
     },
     {
@@ -275,7 +275,7 @@ const MENU_CATALOG = [
         "presentation": "icon",
         "id": "account",
         "label": "Your portal / Sign in",
-        "url": "profile.html",
+        "url": "profile",
         "icon": "fa-circle-user"
     },
     {
@@ -284,7 +284,7 @@ const MENU_CATALOG = [
         "presentation": "icon",
         "id": "admin",
         "label": "Admin panel",
-        "url": "admin.html",
+        "url": "admin",
         "icon": "fa-shield-halved"
     },
     {
@@ -293,7 +293,7 @@ const MENU_CATALOG = [
         "presentation": "text",
         "id": "help",
         "label": "Help & ordering",
-        "url": "help.html",
+        "url": "help",
         "icon": "fa-circle-question"
     }
 ];
@@ -431,6 +431,9 @@ function mailTransport() {
     });
 }
 
+function escapeEmailHTML(value) {
+    return String(value).replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
+}
 async function sendEmail({ to, subject, text, html }) {
     const from = process.env.EMAIL_FROM || 'Whole-Hearted Health <no-reply@localhost>';
     if (process.env.RESEND_API_KEY) {
@@ -591,7 +594,7 @@ app.post('/api/auth/register', async (req, res) => {
     data.users.push(user);
     const token = createOneTimeToken(data, 'verify-account', email, 24 * 3600000);
     writeData(data);
-    const link = `${publicBaseUrl(req)}/signin.html?verify=${encodeURIComponent(token)}`;
+    const link = `${publicBaseUrl(req)}/signin?verify=${encodeURIComponent(token)}`;
     try {
         await sendEmail({ to: email, subject: 'Verify your Whole-Hearted Health account',
             text: `Verify your account: ${link}`, html: `<p>Welcome to Whole-Hearted Health.</p><p><a href="${link}">Verify your account</a></p>` });
@@ -627,7 +630,7 @@ app.post('/api/auth/resend-verification', async (req, res) => {
     if (user && !user.verifiedAt) {
         const token = createOneTimeToken(data, 'verify-account', email, 24 * 3600000);
         writeData(data);
-        const link = `${publicBaseUrl(req)}/signin.html?verify=${encodeURIComponent(token)}`;
+        const link = `${publicBaseUrl(req)}/signin?verify=${encodeURIComponent(token)}`;
         await sendEmail({ to: email, subject: 'Verify your Whole-Hearted Health account', text: `Verify your account: ${link}` });
     }
     res.json({ success: true, message: 'If an unverified account exists, a new email has been sent.' });
@@ -640,7 +643,7 @@ app.post('/api/auth/forgot-password', async (req, res) => {
     if (user) {
         const token = createOneTimeToken(data, 'reset-password', email, 60 * 60000);
         writeData(data);
-        const link = `${publicBaseUrl(req)}/signin.html?reset=${encodeURIComponent(token)}`;
+        const link = `${publicBaseUrl(req)}/signin?reset=${encodeURIComponent(token)}`;
         await sendEmail({ to: email, subject: 'Reset your Whole-Hearted Health password',
             text: `Reset your password within one hour: ${link}` });
     }
@@ -715,8 +718,8 @@ app.post('/api/checkout/session', async (req, res) => {
     }
     const params = new URLSearchParams({
         mode: 'payment',
-        success_url: `${origin}/cart.html?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${origin}/cart.html?checkout=cancel`,
+        success_url: `${origin}/cart?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${origin}/cart?checkout=cancel`,
         customer_email: user.email,
         'shipping_address_collection[allowed_countries][0]': 'US'
     });
@@ -834,7 +837,7 @@ app.post('/api/newsletter/subscribe', async (req, res) => {
     if (!subscriber.verifiedAt) {
         const token = createOneTimeToken(data, 'verify-newsletter', email, 24 * 3600000);
         writeData(data);
-        const link = `${publicBaseUrl(req)}/profile.html?newsletter_verify=${encodeURIComponent(token)}`;
+        const link = `${publicBaseUrl(req)}/profile?newsletter_verify=${encodeURIComponent(token)}`;
         await sendEmail({ to: email, subject: 'Confirm Whole-Hearted Health newsletter', text: `Confirm your subscription: ${link}` });
     }
     res.json({ success: true, message: 'Check your email to confirm your subscription.' });
@@ -965,8 +968,10 @@ app.post('/api/admin/newsletter', requireAdmin, async (req, res) => {
     const results = [];
     for (const item of deliveries) {
         try {
+            const unsubscribeUrl = `${publicBaseUrl(req)}/profile?unsubscribe=${encodeURIComponent(item.token)}`;
             await sendEmail({ to: item.email, subject,
-                text: `${message}\n\nUnsubscribe: ${publicBaseUrl(req)}/profile.html?unsubscribe=${encodeURIComponent(item.token)}` });
+                text: `${message}\n\nUnsubscribe: ${unsubscribeUrl}`,
+                html: `<div style="font-family:Arial,sans-serif;color:#34241f;line-height:1.6">${escapeEmailHTML(message).replace(/\r?\n/g, '<br>')}<p style="margin-top:24px;font-size:13px"><a href="${escapeEmailHTML(unsubscribeUrl)}" style="color:#8b5268">Unsubscribe</a></p></div>` });
             results.push({ status: 'fulfilled' });
         } catch { results.push({ status: 'rejected' }); }
         if (process.env.RESEND_API_KEY) await new Promise(resolve => setTimeout(resolve, 600));
@@ -1181,15 +1186,17 @@ app.get('/healthz', async (_req, res) => {
 app.use('/img', express.static(path.join(__dirname, 'img'), { dotfiles: 'deny' }));
 // Keep old bookmarks working without maintaining duplicate pages.
 const legacyPages = {
-    '/portal.html': '/profile.html',
-    '/blog.html': '/events.html',
-    '/track.html': '/portal.html',
-    '/event-nutrition-qa-night.html': '/events.html',
-    '/event-spring-wellness-workshop.html': '/events.html',
-    '/event-summer-product-preview.html': '/events.html'
+    '/portal': '/profile',
+    '/portal.html': '/profile',
+    '/blog.html': '/events',
+    '/track': '/profile',
+    '/track.html': '/profile',
+    '/event-nutrition-qa-night.html': '/events',
+    '/event-spring-wellness-workshop.html': '/events',
+    '/event-summer-product-preview.html': '/events'
 };
 for (const [oldPath, destination] of Object.entries(legacyPages)) {
-    app.get(oldPath, (req, res) => res.redirect(301, destination + (oldPath === '/portal.html' ? req.originalUrl.slice(req.path.length) : '')));
+    app.get(oldPath, (req, res) => res.redirect(301, destination + req.originalUrl.slice(req.path.length)));
 }
 const publicFiles = [
     'index.html', 'shop.html', 'sproduct.html', 'cart.html', 'wishlist.html',
@@ -1199,9 +1206,13 @@ const publicFiles = [
     'privacy.html', 'terms.html', 'style.css', 'script.js', 'admin-dashboard.js'
 ];
 for (const file of publicFiles) {
-    app.get(file === 'index.html' ? ['/', '/index.html'] : `/${file}`, (_req, res) => {
-        res.sendFile(path.join(__dirname, file));
-    });
+    if (file.endsWith('.html')) {
+        const cleanPath = '/' + file.slice(0, -5);
+        app.get('/' + file, (req, res) => res.redirect(301, cleanPath + req.originalUrl.slice(req.path.length)));
+        app.get(file === 'index.html' ? ['/', cleanPath] : cleanPath, (_req, res) => res.sendFile(path.join(__dirname, file)));
+    } else {
+        app.get('/' + file, (_req, res) => res.sendFile(path.join(__dirname, file)));
+    }
 }
 
 app.use((error, _req, res, _next) => {

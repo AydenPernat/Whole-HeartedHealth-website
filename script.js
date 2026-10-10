@@ -124,7 +124,7 @@ class Cart {
 const cart = new Cart();
 // ---------- Helper: detect if we are on the wishlist page ----------
 function isWishlistPage() {
-    return window.location.pathname.endsWith('wishlist.html') ||
+    return window.location.pathname.endsWith('wishlist') ||
            document.querySelector('#wishlist') !== null;
 }
 // Add to Cart functionality
@@ -144,7 +144,7 @@ function setupAddToCartButtons() {
             const dataId = parseInt(product.dataset.productId || '', 10);
             const productId = Number.isFinite(dataId) && dataId > 0 ? dataId : products[index % products.length]?.id;
             if (!productId) return;
-            window.location.href = `sproduct.html?id=${productId}`;
+            window.location.href = `sproduct?id=${productId}`;
         });
         
         // Handle cart button separately
@@ -184,7 +184,7 @@ function setupAddToCartButtons() {
                 ev.stopPropagation();
                 if (!isSignedIn()) {
                     const redirectUrl = encodeURIComponent(window.location.pathname + window.location.search);
-                    window.location.href = `signin.html?redirect=${redirectUrl}`;
+                    window.location.href = `signin?redirect=${redirectUrl}`;
                     return;
                 }
                 const productId = parseInt(ev.currentTarget.dataset.productId);
@@ -399,7 +399,7 @@ function renderCatalogCards() {
                 <img src="${escapeHTML(p.image)}" alt="${escapeHTML(p.name)}">
                 <div class="des">
                     <span>${escapeHTML(p.category || 'Product')}</span>
-                    <h5><a href="sproduct.html?id=${encodeURIComponent(p.id)}">${escapeHTML(p.name)}</a></h5>
+                    <h5><a href="sproduct?id=${encodeURIComponent(p.id)}">${escapeHTML(p.name)}</a></h5>
                     <h4>$${formatMoney(p.price)}</h4>
                 </div>
                 <a href="#" aria-label="Add ${escapeHTML(p.name)} to cart"><i class="fa-solid fa-cart-shopping cart"></i></a>
@@ -415,7 +415,7 @@ function renderEventsPage() {
     const events = getAllEvents().filter(ev => !Number.isFinite(Date.parse(ev.date)) || Date.parse(ev.date) >= Date.now() - 86400000);
     grid.innerHTML = events.length ? events.map(ev => `
         <article class="pro" data-skip-product-behavior="true">
-            <a href="event-detail.html?id=${encodeURIComponent(ev.id)}" style="text-decoration:none; color:inherit; display:block;">
+            <a href="event-detail?id=${encodeURIComponent(ev.id)}" style="text-decoration:none; color:inherit; display:block;">
                 <div class="des" style="padding-top:0;">
                     <h5 style="font-size:20px; margin-bottom:10px;">${escapeHTML(ev.name)}</h5>
                 </div>
@@ -439,7 +439,7 @@ function renderEventDetailPage() {
     const event = events.find(ev => ev.id === id);
     if (!event) {
         const panel = document.getElementById('prodetails');
-        panel.innerHTML = '<div><h1>Event unavailable</h1><p>This event could not be found.</p><a class="normal" href="events.html">View upcoming events</a></div>';
+        panel.innerHTML = '<div><h1>Event unavailable</h1><p>This event could not be found.</p><a class="normal" href="events">View upcoming events</a></div>';
         return;
     }
 
@@ -533,7 +533,7 @@ function renderAdminPage() {
 
     if (!isSignedIn()) {
         const redirectUrl = encodeURIComponent(window.location.pathname + window.location.search);
-        window.location.href = `signin.html?redirect=${redirectUrl}`;
+        window.location.href = `signin?redirect=${redirectUrl}`;
         return;
     }
 
@@ -661,7 +661,7 @@ const DEFAULT_NAVIGATION = [
         "presentation": "text",
         "id": "home",
         "label": "Home",
-        "url": "index.html",
+        "url": "index",
         "icon": "fa-house"
     },
     {
@@ -670,7 +670,7 @@ const DEFAULT_NAVIGATION = [
         "presentation": "text",
         "id": "shop",
         "label": "Shop",
-        "url": "shop.html",
+        "url": "shop",
         "icon": "fa-store"
     },
     {
@@ -679,7 +679,7 @@ const DEFAULT_NAVIGATION = [
         "presentation": "text",
         "id": "about",
         "label": "About",
-        "url": "about.html",
+        "url": "about",
         "icon": "fa-heart"
     },
     {
@@ -688,7 +688,7 @@ const DEFAULT_NAVIGATION = [
         "presentation": "text",
         "id": "contact",
         "label": "Contact",
-        "url": "contact.html",
+        "url": "contact",
         "icon": "fa-envelope"
     },
     {
@@ -697,7 +697,7 @@ const DEFAULT_NAVIGATION = [
         "presentation": "text",
         "id": "events",
         "label": "Upcoming Events",
-        "url": "events.html",
+        "url": "events",
         "icon": "fa-calendar-days"
     },
     {
@@ -706,7 +706,7 @@ const DEFAULT_NAVIGATION = [
         "presentation": "icon",
         "id": "wishlist",
         "label": "Wishlist",
-        "url": "wishlist.html",
+        "url": "wishlist",
         "icon": "fa-clipboard-list"
     },
     {
@@ -715,7 +715,7 @@ const DEFAULT_NAVIGATION = [
         "presentation": "icon",
         "id": "cart",
         "label": "Shopping bag",
-        "url": "cart.html",
+        "url": "cart",
         "icon": "fa-bag-shopping"
     },
     {
@@ -724,7 +724,7 @@ const DEFAULT_NAVIGATION = [
         "presentation": "icon",
         "id": "account",
         "label": "Your portal / Sign in",
-        "url": "profile.html",
+        "url": "profile",
         "icon": "fa-circle-user"
     },
     {
@@ -733,7 +733,7 @@ const DEFAULT_NAVIGATION = [
         "presentation": "icon",
         "id": "admin",
         "label": "Admin panel",
-        "url": "admin.html",
+        "url": "admin",
         "icon": "fa-shield-halved"
     },
     {
@@ -742,7 +742,7 @@ const DEFAULT_NAVIGATION = [
         "presentation": "text",
         "id": "help",
         "label": "Help & ordering",
-        "url": "help.html",
+        "url": "help",
         "icon": "fa-circle-question"
     }
 ];
@@ -777,7 +777,7 @@ function applyShopVisibility() {
                 if (url.origin !== location.origin) return;
                 const destination = url.pathname.split('/').pop();
                 const redirect = url.searchParams.get('redirect');
-                if (['shop.html','sproduct.html'].includes(destination) || (destination === 'signin.html' && redirect && ['shop.html','sproduct.html'].includes(new URL(redirect, location.href).pathname.split('/').pop()))) {
+                if (['shop','sproduct'].includes(destination) || (destination === 'signin' && redirect && ['shop','sproduct'].includes(new URL(redirect, location.href).pathname.split('/').pop()))) {
                     targets.add(link.parentElement?.tagName === 'LI' ? link.parentElement : link);
                 }
             } catch {}
@@ -804,8 +804,8 @@ function updateAuthUI() {
     const nav = document.getElementById('navbar');
     if (!nav) return;
     const signedIn = isSignedIn();
-    const current = location.pathname.split('/').pop() || 'index.html';
-    const aliases = { 'portal.html':'profile.html', 'sproduct.html':'shop.html', 'event-detail.html':'events.html' };
+    const current = location.pathname.split('/').pop() || 'index';
+    const aliases = { 'portal':'profile', 'sproduct':'shop', 'event-detail':'events' };
     const activePage = aliases[current] || current;
     nav.replaceChildren();
     navigationSettings.filter(item => menuItemVisible(item)).forEach(item => {
@@ -814,7 +814,7 @@ function updateAuthUI() {
         li.id = {cart:'lg-bag', wishlist:'nav-wishlist', account:'nav-user', admin:'nav-admin'}[item.id] || 'nav-' + item.id;
         const link = document.createElement('a');
         const label = item.id === 'account' ? (signedIn ? 'Your portal' : 'Sign in') : item.label;
-        const destination = item.id === 'account' && !signedIn ? 'signin.html?redirect=profile.html' : item.url;
+        const destination = item.id === 'account' && !signedIn ? 'signin?redirect=profile' : item.url;
         link.href = destination;
         link.title = label;
         link.setAttribute('aria-label', label);
@@ -880,7 +880,7 @@ function renderWishlistPage() {
         container.innerHTML = `
             <div style="text-align:center; padding:40px 0; color:var(--text-muted); grid-column: 1 / -1;">
                 <p>Sign in to view your wishlist</p>
-                <a href="signin.html?redirect=wishlist.html" class="normal" style="display:inline-block; margin-top:12px; padding:10px 24px; background:var(--action); color:#fffaf7; border-radius:12px;">Sign In</a>
+                <a href="signin?redirect=wishlist" class="normal" style="display:inline-block; margin-top:12px; padding:10px 24px; background:var(--action); color:#fffaf7; border-radius:12px;">Sign In</a>
             </div>
         `;
         return;
@@ -898,7 +898,7 @@ function renderWishlistPage() {
                 <img src="${escapeHTML(p.image)}" alt="${escapeHTML(p.name)}">
                 <div class="des">
                     <span>${escapeHTML(p.category || "Product")}</span>
-                    <h5><a href="sproduct.html?id=${encodeURIComponent(p.id)}">${escapeHTML(p.name)}</a></h5>
+                    <h5><a href="sproduct?id=${encodeURIComponent(p.id)}">${escapeHTML(p.name)}</a></h5>
                     <h4>$${formatMoney(p.price)}</h4>
                 </div>
                 <button class="btn-wishlist active" data-product-id="${escapeHTML(p.id)}" title="Remove from wishlist">−</button>
@@ -965,7 +965,7 @@ function renderProfilePage() {
     if (new URLSearchParams(location.search).has('newsletter_verify') || new URLSearchParams(location.search).has('unsubscribe')) { document.querySelector('[data-newsletter-action]')?.closest('section')?.remove(); return; }
     if (!isSignedIn()) {
         const redirectUrl = encodeURIComponent(window.location.pathname + window.location.search);
-        window.location.href = `signin.html?redirect=${redirectUrl}`;
+        window.location.href = `signin?redirect=${redirectUrl}`;
         return;
     }
 
@@ -1006,7 +1006,7 @@ function renderProfilePage() {
 
     if (signoutBtn) {
         signoutBtn.addEventListener('click', async () => {
-            try { await signOutUser(); window.location.href = 'signin.html'; }
+            try { await signOutUser(); window.location.href = 'signin'; }
             catch(error) { showNotification(error.message); }
         });
     }
@@ -1036,7 +1036,7 @@ async function setupCheckoutButton() {
             }
             if (!isSignedIn()) {
                 const redirectUrl = encodeURIComponent(window.location.pathname + window.location.search);
-                window.location.href = `signin.html?redirect=${redirectUrl}`;
+                window.location.href = `signin?redirect=${redirectUrl}`;
                 return;
             }
             
@@ -1091,7 +1091,7 @@ async function handleNewsletterLink() {
         const response = await fetch(endpoint, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body) });
         const result = await response.json();
         const panel = document.getElementById('profile-settings');
-        if (panel) panel.innerHTML = `<div class="profile-card"><h2>Newsletter preferences</h2><p role="status">${escapeHTML(result.message || result.error)}</p><a href="index.html">Return home</a></div>`;
+        if (panel) panel.innerHTML = `<div class="profile-card"><h2>Newsletter preferences</h2><p role="status">${escapeHTML(result.message || result.error)}</p><a href="index">Return home</a></div>`;
         showNotification(result.message || result.error);
     } catch (err) {
         const panel = document.getElementById('profile-settings');
@@ -1378,14 +1378,14 @@ async function renderCustomerPortal() {
     if (!isSignedIn()) return;
     try {
         const response = await fetch('/api/portal');
-        if (response.status === 401) { location.href = 'signin.html?redirect=profile.html'; return; }
+        if (response.status === 401) { location.href = 'signin?redirect=profile'; return; }
         const data = await response.json();
         if (!response.ok) throw new Error(data.error || 'Could not load your portal.');
         document.getElementById('portal-welcome').textContent = 'Welcome back, ' + data.user.name;
         document.getElementById('portal-orders').innerHTML = data.orders.length ? data.orders.map(order => {
             const progress = Math.max(0, Math.min(100, Number(order.progress) || 0));
             return `<article class="portal-card"><div class="portal-card-top"><strong>Order ${escapeHTML(String(order.id).slice(-8))}</strong><span class="status-pill">${escapeHTML(order.status)}</span></div><p>${order.items.map(item => escapeHTML(item.quantity + ' × ' + item.name + (item.size ? ' (' + item.size + ')' : ''))).join(', ')}</p><div class="progress-track" role="progressbar" aria-label="Order progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress}"><span style="width:${progress}%"></span></div><small>${progress}% complete</small>${order.note ? '<p class="portal-note">' + escapeHTML(order.note) + '</p>' : ''}</article>`;
-        }).join('') : '<div class="portal-card empty-state"><i class="fa-solid fa-bag-shopping" aria-hidden="true"></i><h3>A little room for something good</h3><p>Your orders will appear here when you place one.</p><a href="shop.html">Browse the shop</a></div>';
+        }).join('') : '<div class="portal-card empty-state"><i class="fa-solid fa-bag-shopping" aria-hidden="true"></i><h3>A little room for something good</h3><p>Your orders will appear here when you place one.</p><a href="shop">Browse the shop</a></div>';
         document.getElementById('portal-requests').innerHTML = data.requests.length ? data.requests.map(item => `<article class="portal-card"><div class="portal-card-top"><strong>${escapeHTML(item.subject)}</strong><span class="status-pill">${escapeHTML(item.status)}</span></div><p>${escapeHTML(item.message)}</p>${item.note ? '<p class="portal-note">' + escapeHTML(item.note) + '</p>' : ''}</article>`).join('') : '<div class="portal-card empty-state"><i class="fa-regular fa-comment" aria-hidden="true"></i><h3>We’re here when you need us</h3><p>Your support conversations will appear here.</p></div>';
         loading.hidden = true;
         document.getElementById('portal-content').hidden = false;

@@ -105,8 +105,8 @@
             document.getElementById('owner-tools').hidden = state.data.role !== 'owner';
             initScrollReveal();
         } catch (error) {
-            if (error.status === 401) location.href = 'signin.html?redirect=admin.html';
-            else if (error.status === 403) { const user = await api('/api/auth/me'); if (!user.user) location.href = 'signin.html?redirect=admin.html'; else document.getElementById('admin-panel').innerHTML = '<h2>Administrator access required</h2><p>This account cannot access the admin dashboard.</p><a href="portal.html">Return to your portal</a>'; }
+            if (error.status === 401) location.href = 'signin?redirect=admin';
+            else if (error.status === 403) { const user = await api('/api/auth/me'); if (!user.user) location.href = 'signin?redirect=admin'; else document.getElementById('admin-panel').innerHTML = '<h2>Administrator access required</h2><p>This account cannot access the admin dashboard.</p><a href="portal">Return to your portal</a>'; }
             else showNotification(error.message);
         }
     }
@@ -152,7 +152,7 @@
     document.getElementById('backup-restore').addEventListener('click', async () => {
         if (!state.backupPreviewed) return showNotification('Preview the backup first.');
         if (!confirm('Restore this backup? Current site data will be replaced and all users will be signed out.')) return;
-        try { const result = await api('/api/owner/backup/restore', { method:'POST', body:JSON.stringify({backup:document.getElementById('backup-payload').value}) }); alert(result.message); location.href='signin.html'; }
+        try { const result = await api('/api/owner/backup/restore', { method:'POST', body:JSON.stringify({backup:document.getElementById('backup-payload').value}) }); alert(result.message); location.href='signin'; }
         catch (error) { showNotification(error.message); }
     });
     load();
