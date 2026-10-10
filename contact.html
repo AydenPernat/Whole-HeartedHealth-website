@@ -1,175 +1,151 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
+
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta http-equic="X-IA-Compatible" content="IE=edge">
-    <meta name="Viewport" content="width-device-width, initial-scale=1.0">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>WholeHeartedHealth</title>
+<meta name="description" content="Explore Whole-Hearted Health products, community events, and your personal customer portal.">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
-    
-    <section id="header">
-        <img src="img/logo.png" class="logo" alt="WholeHeartedHealth logo">
+<div id="page-loader" class="page-loader" aria-hidden="true"><div class="loader-mark"><img src="img/logo3.png" alt=""><span class="loader-orbit"></span></div><span class="loader-caption">Whole-Hearted Health</span><span class="loader-line"></span></div>
+<a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header id="header">
+
+        <a class="brand-link" href="index.html"><img src="img/logo3.png" class="logo" alt="Whole-Hearted Health home"></a>
 
         <div>
+
             <ul id="navbar">
+
                 <li><a href="index.html">Home</a></li>
+
                 <li><a href="shop.html">Shop</a></li>
-                <li><a href="blog.html">Blog</a></li>
+
                 <li><a href="about.html">About</a></li>
+
                 <li><a class="active" href="contact.html">Contact</a></li>
+
                 <li><a href="events.html">Upcoming Events</a></li>
-                <li id="nav-wishlist"><a href="wishlist.html"><i class="fa-solid fa-clipboard-list"></i></a></li>
-                <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a></li>
+
+                <li id="nav-wishlist"><a href="wishlist.html" aria-label="Wishlist"><i class="fa-solid fa-clipboard-list"></i></a></li>
+
+                <li id="lg-bag"><a href="cart.html" aria-label="Shopping bag"><i class="fa-solid fa-bag-shopping"></i></a></li>
+
                 </ul>
+
         </div>
+
         <div id="mobile">
+
             <button id="menu-toggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false"><i id="bar" class="fa-solid fa-bars"></i></button>
+
         </div>
-    </section>
+
+    </header>
+<main id="main-content">
 
     <section id="page-header" class="about-header">
-        <h2>Contact us</h2>
-        <p>read all case studies about our products</p>
+        <div class="page-art" aria-hidden="true"><span></span><span></span><span></span></div>
+        <span class="page-eyebrow">LET’S CONNECT</span>
+
+        <h1>Contact us</h1>
+
+        <p>Questions about products, events, or an order? We’re here to help.</p>
+
     </section>
 
     <section id="contact-details" class="section-p1">
+
         <div class="details">
+
             <span>Get in touch</span>
-            <h2>contact us</h2>
-            <h3>Head office</h3>
-            <div>
-                <li>
-                    <i class="fal fa-map">
-                        <p>address</p>
-                    </i>
-                    <i class="fal fa-envelope">
-                        <p>address</p>
-                    </i>
-                    <i class="fal fa-phone-alt">
-                        <p>address</p>
-                    </i>
-                    <i class="fal fa-clock">
-                        <p>address</p>
-                    </i>
-                </li>
-            </div>
-        </div>
-        <div class="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2912.165894488239!2d-88.56323174380285!3d43.1220411124255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8805cc78d2adf31f%3A0xb79ef35e93c8b583!2sW493%20Rockvale%20Rd%2C%20Oconomowoc%2C%20WI%2053066!5e0!3m2!1sen!2sus!4v1770864440029!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-    </section>
 
-    <section id="form-details">
-        <form action="">
-            <span>leave a message</span>
-            <h2>we love to hear from you</h2>
-            <input type="text" placeholder="Your Name">
-            <input type="text" placeholder="E-mail">
-            <input type="text" placeholder="subject">
-            <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
-            <button class="normal">Submit</button>
+            <h2>Let's connect</h2>
+
+            <h3>Contact information</h3>
+            <p>Whole-Hearted Health</p>
+            <p>W493 Rockvale Road, Oconomowoc, WI 53066</p>
+            <p>Phone: <a href="tel:+19208606475">920-860-6475</a></p>
+        </div>
+
+        <form id="support-request-form">
+            <span>Send a request</span>
+            <h2>How can we help?</h2>
+            <label for="support-name">Name</label><input id="support-name" name="name" required>
+            <label for="support-email">Email</label><input id="support-email" name="email" type="email" required>
+            <label for="support-subject">Subject</label><input id="support-subject" name="subject" required>
+            <label for="support-message">Message</label><textarea id="support-message" name="message" rows="7" minlength="10" maxlength="5000" required></textarea>
+            <button class="normal" type="submit">Send request</button>
+            <p id="support-form-message" role="status" aria-live="polite"></p>
         </form>
-
-        <div class="people">
-            <div>
-                <img src="img/people/1.png" alt="">
-            <p><span>person name</span> role <br>number <br>email</p>
-            </div>
-            <div>
-                <img src="img/people/1.png" alt="">
-            <p><span>person name</span> role <br>number <br>email</p>
-            </div>
-            <div>
-                <img src="img/people/1.png" alt="">
-            <p><span>person name</span> role <br>number <br>email</p>
-            </div>
-        </div>
     </section>
+
+    <dialog id="sent-dialog" class="themed-dialog" aria-labelledby="sent-title">
+        <img src="img/logo3.png" alt="" width="72" height="72">
+        <h2 id="sent-title">Message sent</h2>
+        <p>Thank you for reaching out. Your message has been received.</p>
+        <form method="dialog"><button class="normal">Lovely, thank you</button></form>
+    </dialog>
+    <script>
+        document.getElementById('support-request-form').addEventListener('submit', async event => {
+            event.preventDefault();
+            const form = event.currentTarget;
+            const output = document.getElementById('support-form-message');
+            const button = form.querySelector('button');
+            button.disabled = true;
+            try {
+            const body = Object.fromEntries(new FormData(form));
+            const response = await fetch('/api/support-requests', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body) });
+            const data = await response.json();
+            output.textContent = response.ok ? 'Your request was received. Save this page or sign in to follow updates.' : (data.error || 'Could not send your request.');
+            if (response.ok) { form.reset(); document.getElementById('sent-dialog').showModal(); }
+            } catch { output.textContent = 'Could not send your request. Please try again.'; }
+            finally { button.disabled = false; }
+        });
+    </script>
 
      <section id="newsletter" class="section-p1 section-m1">
+
         <div class="newstext">
-            <h4>sign up for news letters</h4>
-            <p>fet email updates about our latest shop and <span>special offers</span></p>
+
+            <h4>A little good in your inbox</h4>
+
+            <p>Product news, upcoming events, and community updates. Subscribe and confirm by email.</p>
+
         </div>
+
         <div class="form">
-                <input type="text" placeholder="Your email address">
-                <button class="normal">sign up</button>
+
+                <input type="email" placeholder="Your email address" aria-label="Email for newsletter" required>
+
+                <button class="normal">Subscribe</button>
+
         </div>
+
     </section>
 
-
-    <footer class="section-p1">
-        <div class="col">
-                <a href="index.html"><img class="logo" src="img/309882121_5132988574724647418299_n.jpg" alt=""></a>
-                <h4>Contact</h4>
-                <p><strong>Address: </strong> W493Rockvale Road. Oconomowoc Wisconsin</p>
-                <p><strong>Phone: </strong> 920 860 6475</p>
-                <p><strong>Hours: </strong> last tuesday - second teusday of next week</p>
-                <div class="follow">
-                    <h4>Follow us</h4>
-                    <div class="icon">
-                        <i class="fab fa-facebook-f"></i>
-                        <i class="fab fa-twitter"></i>
-                         <i class="fab fa-instagram"></i>
-                        <i class="fab fa-pinterest-p"></i>
-                        <i class="fab fa-youtube"></i>
-                    </div>
-                </div>
-        </div>
-
-        <div class="col">
-            <h4>About</h4>
-            <a href="about.html">About us</a>
-            <a href="#">Delivery Information</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms & Conditions</a>
-            <a href="contact.html">Contact us</a>
-        </div>
-        <div class="col">
-            <h4>My Account</h4>
-            <a href="signin.html">Sign In</a>
-            <a href="cart.html">View Cart</a>
-            <a href="wishlist.html">My Wishlist</a>
-            <a href="track.html">Track My Order</a>
-            <a href="help.html">Help</a>
-        </div>
-
-        <div class="col install">
-            <h4>Install App</h4>
-            <p>From App Store or Google Play</p>
-            <div class="row">
-                <img src="img/pay/app.jpg" alt="">
-                <img src="img/pay/play.jpg" alt="">
-            </div>
-            <p>Secured Payment Gateways</p>
-            <img src="img/pay/pay.png" alt="">
-        </div>
-
-        <div class="col footer-newsletter">
-            <h4>Join our community</h4>
-            <p>Exclusive offers, early access and health tips â€” straight to your inbox.</p>
-            <div class="footer-news-form">
-                <input type="email" placeholder="Your email address" aria-label="newsletter email">
-                <button class="normal">Subscribe</button>
-            </div>
-            <small style="color:#666; display:block; margin-top:10px;">We respect your privacy. <a href="privacy.html">Learn more</a></small>
-        </div>
-
-        <div class="copyright">
-            <p>Â© 2026, WholeHeartedHealth</p>
-        </div>
-    </footer>
-
+    </main>
+<footer class="section-p1 site-footer">
+<div class="col"><a class="footer-brand" href="index.html">Whole-Hearted Health<span>Room for a little more well-being.</span></a><p>Explore our shop, connect with our community,<br>and find your own everyday rhythm.</p></div>
+<div class="col"><h4>Explore</h4><a href="shop.html">Shop</a><a href="events.html">Events</a><a href="about.html">Our story</a><a href="contact.html">Get in touch</a></div>
+<div class="col"><h4>Your space</h4><a href="profile.html">Your portal</a><a href="profile.html#profile-settings">Account settings</a><a href="help.html">Help &amp; ordering</a></div>
+<div class="copyright"><p>&copy; 2026 Whole-Hearted Health</p><div><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div></footer>
 
     <script src="script.js"></script>
+
 </body>
 
 </html>
-
-
 

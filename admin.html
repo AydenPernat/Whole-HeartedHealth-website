@@ -3,42 +3,54 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equic="X-IA-Compatible" content="IE=edge">
-    <meta name="Viewport" content="width-device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel | WholeHeartedHealth</title>
+<meta name="description" content="Explore Whole-Hearted Health products, community events, and your personal customer portal.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <section id="header">
-        <img src="img/logo.png" class="logo" alt="WholeHeartedHealth logo">
+<div id="page-loader" class="page-loader" aria-hidden="true"><div class="loader-mark"><img src="img/logo3.png" alt=""><span class="loader-orbit"></span></div><span class="loader-caption">Whole-Hearted Health</span><span class="loader-line"></span></div>
+<a class="skip-link" href="#main-content">Skip to content</a>
+    <header id="header">
+        <a class="brand-link" href="index.html"><img src="img/logo3.png" class="logo" alt="Whole-Hearted Health home"></a>
 
         <div>
             <ul id="navbar">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="shop.html">Shop</a></li>
-                <li><a href="blog.html">Blog</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="events.html">Upcoming Events</a></li>
-                <li id="nav-wishlist"><a href="wishlist.html"><i class="fa-solid fa-clipboard-list"></i></a></li>
-                <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a></li>
+                <li id="nav-wishlist"><a href="wishlist.html" aria-label="Wishlist"><i class="fa-solid fa-clipboard-list"></i></a></li>
+                <li id="lg-bag"><a href="cart.html" aria-label="Shopping bag"><i class="fa-solid fa-bag-shopping"></i></a></li>
             </ul>
         </div>
         <div id="mobile">
             <button id="menu-toggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false"><i id="bar" class="fa-solid fa-bars"></i></button>
         </div>
-    </section>
+    </header>
+<main id="main-content">
 
     <section id="page-header" class="about-header">
-        <h2>Superior Admin Panel</h2>
-        <p>Add events and products without editing files</p>
+        <div class="page-art" aria-hidden="true"><span></span><span></span><span></span></div>
+        <span class="page-eyebrow">BEHIND THE SCENES</span>
+        <h1>Business Admin</h1>
+        <p>Manage products, events, orders, support, accounts, and subscribers.</p>
     </section>
 
     <section class="section-p1" id="admin-panel">
-        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:20px;">
-            <div style="border:1px solid #e3e6f3; border-radius:12px; padding:16px;">
+<section class="admin-card menu-settings" id="menu-settings">
+    <div class="menu-settings-heading"><div><p class="eyebrow">MAKE IT YOURS</p><h3>Hamburger menu</h3><p>Choose which links appear, who sees them, and their order.</p></div><a href="#menu-preview">Preview your menu <i class="fa-solid fa-arrow-down" aria-hidden="true"></i></a></div>
+    <form id="navigation-form">
+        <div id="navigation-editor" class="navigation-editor" aria-label="Menu items"></div>
+        <div class="menu-settings-actions"><button class="normal" type="submit" id="navigation-save">Save menu</button><button class="white" type="button" id="navigation-reset">Reset to defaults</button><p id="navigation-status" role="status" aria-live="polite"></p></div>
+    </form>
+    <aside id="menu-preview" class="menu-preview"><div><h4>Menu preview</h4><label for="navigation-preview-role">Viewing as</label><select id="navigation-preview-role"><option value="guests">Visitor</option><option value="members">Signed-in customer</option><option value="admins">Administrator</option></select></div><ul id="navigation-preview-list"></ul><p>Hidden links leave no gaps. Turning Shop off also hides shop links and collection sections across the site. Direct page access stays the same.</p></aside>
+</section>
+        <div class="admin-editor-grid">
+            <div class="admin-editor-card">
                 <h3 style="margin-bottom:12px;">Add Event</h3>
                 <form id="admin-event-form" style="display:grid; gap:10px;">
                     <input id="admin-event-name" type="text" placeholder="Event name" required>
@@ -53,16 +65,16 @@
                 <div id="admin-events-list" style="margin-top:14px;"></div>
             </div>
 
-            <div style="border:1px solid #e3e6f3; border-radius:12px; padding:16px;">
+            <div class="admin-editor-card">
                 <h3 style="margin-bottom:12px;">Add Product</h3>
                 <form id="admin-product-form" style="display:grid; gap:10px;">
                     <input id="admin-product-name" type="text" placeholder="Product name" required>
                     <input id="admin-product-price" type="number" step="0.01" min="0" placeholder="Price" required>
-                    <label style="font-size:13px; color:#666;">Product images (required: 4)</label>
+                    <label class="muted-text">Product images (one required, up to four)</label>
                     <input id="admin-product-image-file-1" type="file" accept="image/*" required>
-                    <input id="admin-product-image-file-2" type="file" accept="image/*" required>
-                    <input id="admin-product-image-file-3" type="file" accept="image/*" required>
-                    <input id="admin-product-image-file-4" type="file" accept="image/*" required>
+                    <input id="admin-product-image-file-2" type="file" accept="image/*">
+                    <input id="admin-product-image-file-3" type="file" accept="image/*">
+                    <input id="admin-product-image-file-4" type="file" accept="image/*">
                     <input id="admin-product-category" type="text" placeholder="Category" required>
                     <textarea id="admin-product-description" placeholder="Product description" rows="4" required></textarea>
                     <button class="normal" type="submit">Save Product</button>
@@ -70,15 +82,38 @@
                 <div id="admin-products-list" style="margin-top:14px;"></div>
             </div>
         </div>
+        <div class="admin-dashboard-grid">
+            <section class="admin-card"><h3>Orders</h3><input id="admin-order-search" type="search" placeholder="Search orders"><div id="admin-orders"></div></section>
+            <section class="admin-card"><h3>Support requests</h3><input id="admin-request-search" type="search" placeholder="Search requests"><div id="admin-requests"></div></section>
+            <section class="admin-card"><h3>Accounts</h3><input id="admin-user-search" type="search" placeholder="Search accounts"><div id="admin-users"></div></section>
+            <section class="admin-card"><h3>Newsletter subscribers</h3><input id="admin-subscriber-search" type="search" aria-label="Search subscribers" placeholder="Search subscribers"><div id="admin-subscribers"></div></section>
+            <section class="admin-card">
+                <h3>Send newsletter</h3>
+                <form id="admin-newsletter-form"><input name="subject" placeholder="Subject" required><textarea name="message" rows="6" placeholder="Message" minlength="10" required></textarea><button class="normal">Send to verified subscribers</button></form>
+            </section>
+            <section class="admin-card" id="owner-tools" hidden>
+                <h3>Owner backup tools</h3>
+                <p>Backups are encrypted with the server's BACKUP_SECRET.</p>
+                <a class="normal portal-button" href="/api/owner/backup">Download encrypted backup</a>
+                <textarea id="backup-payload" rows="5" placeholder="Paste encrypted backup JSON to preview"></textarea>
+                <div class="backup-actions">
+                <button id="backup-preview" class="white" type="button">Preview backup</button>
+                <button id="backup-restore" class="white" type="button">Restore previewed backup</button>
+                </div>
+                <pre id="backup-preview-output"></pre>
+            </section>
+        </div>
     </section>
 
-    <footer class="section-p1">
-        <div class="copyright">
-            <p>&copy; 2026, WholeHeartedHealth</p>
-        </div>
-    </footer>
+    </main>
+<footer class="section-p1 site-footer">
+<div class="col"><a class="footer-brand" href="index.html">Whole-Hearted Health<span>Room for a little more well-being.</span></a><p>Explore our shop, connect with our community,<br>and find your own everyday rhythm.</p></div>
+<div class="col"><h4>Explore</h4><a href="shop.html">Shop</a><a href="events.html">Events</a><a href="about.html">Our story</a><a href="contact.html">Get in touch</a></div>
+<div class="col"><h4>Your space</h4><a href="profile.html">Your portal</a><a href="profile.html#profile-settings">Account settings</a><a href="help.html">Help &amp; ordering</a></div>
+<div class="copyright"><p>&copy; 2026 Whole-Hearted Health</p><div><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div></footer>
 
     <script src="script.js"></script>
+    <script src="admin-dashboard.js"></script>
 </body>
 
 </html>

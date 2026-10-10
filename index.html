@@ -1,456 +1,127 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
+
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta http-equic="X-IA-Compatible" content="IE=edge">
-    <meta name="Viewport" content="width-device-width, initial-scale=1.0">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>WholeHeartedHealth</title>
+<meta name="description" content="Explore Whole-Hearted Health products, community events, and your personal customer portal.">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
-    
-    <section id="header">
-        <img src="img/logo.png" class="logo" alt="WholeHeartedHealth logo">
+<div id="page-loader" class="page-loader" aria-hidden="true"><div class="loader-mark"><img src="img/logo3.png" alt=""><span class="loader-orbit"></span></div><span class="loader-caption">Whole-Hearted Health</span><span class="loader-line"></span></div>
+<a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header id="header">
+
+        <a class="brand-link" href="index.html"><img src="img/logo3.png" class="logo" alt="Whole-Hearted Health home"></a>
 
         <div>
+
             <ul id="navbar">
+
                 <li><a class="active" href="index.html">Home</a></li>
+
                 <li><a href="shop.html">Shop</a></li>
-                <li><a href="blog.html">Blog</a></li>
+
                 <li><a href="about.html">About</a></li>
+
                 <li><a href="contact.html">Contact</a></li>
+
                 <li><a href="events.html">Upcoming Events</a></li>
-                <li id="nav-wishlist"><a href="wishlist.html"><i class="fa-solid fa-clipboard-list"></i></a></li>
-                <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a></li>
+
+                <li id="nav-wishlist"><a href="wishlist.html" aria-label="Wishlist"><i class="fa-solid fa-clipboard-list"></i></a></li>
+
+                <li id="lg-bag"><a href="cart.html" aria-label="Shopping bag"><i class="fa-solid fa-bag-shopping"></i></a></li>
+
                 </ul>
+
         </div>
+
         <div id="mobile">
+
             <button id="menu-toggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false"><i id="bar" class="fa-solid fa-bars"></i></button>
-        </div>
-    </section>
 
-    <section id="hero">
-        <div class="hero-parallax hero-orb hero-orb-a" data-parallax-speed="-0.08" data-parallax-limit="60"></div>
-        <div class="hero-parallax hero-orb hero-orb-b" data-parallax-speed="0.12" data-parallax-limit="90"></div>
-        <div class="hero-parallax hero-orb hero-orb-c" data-parallax-speed="-0.1" data-parallax-limit="70"></div>
-        <div class="hero-parallax hero-orb hero-orb-d" data-parallax-speed="0.08" data-parallax-limit="62"></div>
-        <div class="hero-parallax hero-orb hero-orb-e" data-parallax-speed="-0.06" data-parallax-limit="54"></div>
-        <div class="hero-parallax hero-orb hero-orb-f" data-parallax-speed="0.09" data-parallax-limit="74"></div>
-        <div class="hero-parallax hero-orb hero-orb-g" data-parallax-speed="-0.11" data-parallax-limit="78"></div>
-        <div class="hero-parallax hero-orb hero-orb-h" data-parallax-speed="0.07" data-parallax-limit="66"></div>
-        <div class="hero-parallax hero-orb hero-orb-i" data-parallax-speed="-0.14" data-parallax-limit="86"></div>
-        <div class="hero-parallax hero-orb hero-orb-j" data-parallax-speed="0.16" data-parallax-limit="92"></div>
-        <div class="hero-parallax hero-orb hero-orb-k" data-parallax-speed="-0.12" data-parallax-limit="82"></div>
-        <div class="hero-parallax hero-orb hero-orb-l" data-parallax-speed="0.18" data-parallax-limit="96"></div>
-        <div class="hero-parallax hero-orb hero-orb-m" data-parallax-speed="-0.2" data-parallax-limit="110"></div>
-        <div class="hero-parallax hero-orb hero-orb-n" data-parallax-speed="0.22" data-parallax-limit="120"></div>
-        <div class="hero-parallax hero-orb hero-orb-o" data-parallax-speed="-0.19" data-parallax-limit="108"></div>
-        <div class="hero-parallax hero-orb hero-orb-p" data-parallax-speed="0.2" data-parallax-limit="112"></div>
-        <div class="hero-parallax hero-orb hero-orb-q" data-parallax-speed="-0.17" data-parallax-limit="100"></div>
-        <div class="hero-parallax hero-orb hero-orb-r" data-parallax-speed="0.21" data-parallax-limit="118"></div>
-        <div class="hero-parallax hero-orb hero-orb-s" data-parallax-speed="-0.18" data-parallax-limit="104"></div>
-        <div class="hero-parallax hero-orb hero-orb-t" data-parallax-speed="0.23" data-parallax-limit="124"></div>
-        <div class="hero-parallax hero-orb hero-orb-u" data-parallax-speed="-0.2" data-parallax-limit="114"></div>
-        <div class="hero-parallax hero-orb hero-orb-v" data-parallax-speed="0.24" data-parallax-limit="128"></div>
-        <div class="hero-parallax hero-watercolor hero-wash-a" data-parallax-speed="0.07" data-parallax-limit="64"></div>
-        <div class="hero-parallax hero-watercolor hero-wash-b" data-parallax-speed="-0.06" data-parallax-limit="58"></div>
-        <div class="hero-parallax hero-logo-layer" data-parallax-speed="0.1" data-parallax-limit="50">
-            <img src="img/logo.png" alt="WholeHeartedHealth">
         </div>
-    </section>
 
-    <section id="product1" class="section-p1">
-        <h2>featured Products</h2>
-        <p>summer collections new modern design</p>
-        <div class="pro-container">
-            <div class="pro">
-                <img src="img/products/f1.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Cartoon Astronaut Tshirt</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>$78</h4>
-                </div>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
-            <div class="pro">
-                <img src="img/products/f1.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Cartoon Astronaut Tshirt</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>$78</h4>
-                </div>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
-            <div class="pro">
-                <img src="img/products/f1.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Cartoon Astronaut Tshirt</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>$78</h4>
-                </div>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
-            <div class="pro">
-                <img src="img/products/f1.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Cartoon Astronaut Tshirt</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>$78</h4>
-                </div>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
-            <div class="pro">
-                <img src="img/products/f1.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Cartoon Astronaut Tshirt</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>$78</h4>
-                </div>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
-            <div class="pro">
-                <img src="img/products/f1.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Cartoon Astronaut Tshirt</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>$78</h4>
-                </div>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
-            <div class="pro">
-                <img src="img/products/f1.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Cartoon Astronaut Tshirt</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>$78</h4>
-                </div>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
-            <div class="pro">
-                <img src="img/products/f1.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Cartoon Astronaut Tshirt</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>$78</h4>
-                </div>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
-        </div>
-    </section>
+    </header>
+<main id="main-content">
 
-    <section id="banner" class="section-m1">
-        <h4>Repair Services</h4>
-        <h2>Up to <span>70% off</span> all tshirts and sccessories </h2>
-        <a class="normal" href="shop.html">explore more</a>
-    </section>
-
-    <section id="product1" class="section-p1">
-        <h2>new arrivals</h2>
-        <p>summer collections new modern design</p>
-        <div class="pro-container">
-            <div class="pro">
-                <img src="img/products/f1.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Cartoon Astronaut Tshirt</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>$78</h4>
-                </div>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
-            <div class="pro">
-                <img src="img/products/f1.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Cartoon Astronaut Tshirt</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>$78</h4>
-                </div>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
-            <div class="pro">
-                <img src="img/products/f1.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Cartoon Astronaut Tshirt</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>$78</h4>
-                </div>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
-            <div class="pro">
-                <img src="img/products/f1.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Cartoon Astronaut Tshirt</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>$78</h4>
-                </div>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
-            <div class="pro">
-                <img src="img/products/f1.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Cartoon Astronaut Tshirt</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>$78</h4>
-                </div>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
-            <div class="pro">
-                <img src="img/products/f1.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Cartoon Astronaut Tshirt</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>$78</h4>
-                </div>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
-            <div class="pro">
-                <img src="img/products/f1.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Cartoon Astronaut Tshirt</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>$78</h4>
-                </div>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
-            <div class="pro">
-                <img src="img/products/f1.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Cartoon Astronaut Tshirt</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>$78</h4>
-                </div>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
-        </div>
-    </section>
-
-    <section id="sm-banner" class="section-p1">
-        <div class="banner-box">
-            <h4>
-                crazy deals
-            </h4>
-            <h2>buy 1 get 1 free</h2>
-            <span>the best clssic dreess is on sale at cara</span>
-            <button class="white">Learn more</button>
-        </div>
-        <div class="banner-box banner-box2">
-            <h4>
-                crazy deals
-            </h4>
-            <h2>buy 1 get 1 free</h2>
-            <span>the best clssic dreess is on sale at cara</span>
-            <button class="white">Learn more</button>
-        </div>
-    </section>
+    <section id="hero"><h1 class="sr-only">Whole-Hearted Health</h1><div class="hero-parallax hero-orb hero-orb-a" data-parallax-speed="-0.060" data-parallax-limit="80"></div>
+<div class="hero-parallax hero-orb hero-orb-b" data-parallax-speed="0.066" data-parallax-limit="80"></div>
+<div class="hero-parallax hero-orb hero-orb-c" data-parallax-speed="-0.072" data-parallax-limit="80"></div>
+<div class="hero-parallax hero-orb hero-orb-d" data-parallax-speed="0.078" data-parallax-limit="80"></div>
+<div class="hero-parallax hero-orb hero-orb-e" data-parallax-speed="-0.084" data-parallax-limit="80"></div>
+<div class="hero-parallax hero-orb hero-orb-f" data-parallax-speed="0.090" data-parallax-limit="80"></div>
+<div class="hero-parallax hero-orb hero-orb-g" data-parallax-speed="-0.096" data-parallax-limit="80"></div>
+<div class="hero-parallax hero-orb hero-orb-h" data-parallax-speed="0.102" data-parallax-limit="80"></div>
+<div class="hero-parallax hero-orb hero-orb-i" data-parallax-speed="-0.108" data-parallax-limit="80"></div>
+<div class="hero-parallax hero-orb hero-orb-j" data-parallax-speed="0.114" data-parallax-limit="80"></div>
+<div class="hero-parallax hero-orb hero-orb-k" data-parallax-speed="-0.120" data-parallax-limit="80"></div>
+<div class="hero-parallax hero-orb hero-orb-l" data-parallax-speed="0.126" data-parallax-limit="80"></div>
+<div class="hero-parallax hero-orb hero-orb-m" data-parallax-speed="-0.132" data-parallax-limit="80"></div>
+<div class="hero-parallax hero-orb hero-orb-n" data-parallax-speed="0.138" data-parallax-limit="80"></div>
+<div class="hero-parallax hero-orb hero-orb-o" data-parallax-speed="-0.144" data-parallax-limit="80"></div>
+<div class="hero-parallax hero-orb hero-orb-p" data-parallax-speed="0.150" data-parallax-limit="80"></div>
+<div class="hero-parallax hero-orb hero-orb-q" data-parallax-speed="-0.156" data-parallax-limit="80"></div>
+<div class="hero-parallax hero-orb hero-orb-r" data-parallax-speed="0.162" data-parallax-limit="80"></div>
+<div class="hero-parallax hero-orb hero-orb-s" data-parallax-speed="-0.168" data-parallax-limit="80"></div>
+<div class="hero-parallax hero-orb hero-orb-t" data-parallax-speed="0.174" data-parallax-limit="80"></div>
+<div class="hero-parallax hero-orb hero-orb-u" data-parallax-speed="-0.180" data-parallax-limit="80"></div>
+<div class="hero-parallax hero-orb hero-orb-v" data-parallax-speed="0.186" data-parallax-limit="80"></div><div class="hero-parallax hero-watercolor hero-wash-a" data-parallax-speed="0.07" data-parallax-limit="64"></div><div class="hero-parallax hero-watercolor hero-wash-b" data-parallax-speed="-0.06" data-parallax-limit="58"></div><div class="hero-parallax hero-logo-layer" data-parallax-speed="0.1" data-parallax-limit="50"><img src="img/logo.png" alt="Whole-Hearted Health"></div></section>
 
 
-    <section id="banner3">
-        <div class="banner-box">
-            <h2>seasonal sale</h2>
-            <h3>winter collection 50% off</h3>
-        </div>
-        <div class="banner-box banner-box2">
-            <h2>seasonal sale</h2>
-            <h3>winter collection 50% off</h3>
-        </div>
-        <div class="banner-box banner-box3">
-            <h2>seasonal sale</h2>
-            <h3>winter collection 50% off</h3>
-        </div>
-    </section>
+<section class="section-p1 home-welcome">
+    <div><p class="eyebrow">A LITTLE MORE WELL-BEING</p><h2>Find your<br>everyday rhythm.</h2></div>
+    <div><p>A thoughtful place to explore, connect, and make room for yourself. Start with something that feels right for you.</p><a class="normal" href="about.html">Meet Whole-Hearted Health <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
+</section>
+<section class="section-p1 home-pathways" aria-label="Explore Whole-Hearted Health">
+    <a class="home-pathway" href="shop.html"><span class="pathway-icon"><i class="fa-solid fa-store" aria-hidden="true"></i></span><span class="eyebrow">EXPLORE</span><h3>Something for your day</h3><p>Browse the collection and take a closer look at what fits your routine.</p><span class="pathway-link">Visit the shop <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a>
+    <a class="home-pathway" href="events.html"><span class="pathway-icon"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></span><span class="eyebrow">CONNECT</span><h3>A little time together</h3><p>See what’s coming up and find opportunities to connect with the community.</p><span class="pathway-link">Explore events <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a>
+    <a class="home-pathway" href="contact.html"><span class="pathway-icon"><i class="fa-regular fa-comment" aria-hidden="true"></i></span><span class="eyebrow">ASK</span><h3>Let’s start a conversation</h3><p>Have a question about a product or an event? We’re here to help you find your next step.</p><span class="pathway-link">Get in touch <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a>
+</section>
+    <section id="product1" class="section-p1"><h2>Explore the collection</h2><p>Discover what’s available from Whole-Hearted Health.</p><div class="pro-container" aria-live="polite"><p>Loading the collection…</p></div></section>
 
+<section class="section-p1 home-guide"><div class="home-guide-heading"><p class="eyebrow">AT YOUR OWN PACE</p><h2>Make yourself<br>at home.</h2><p>No complicated start. Just a few ways to explore.</p></div><div class="home-guide-steps"><article><span>01</span><div><h3>Follow your curiosity</h3><p>Read our story, explore the shop, or see which events catch your eye.</p></div></article><article><span>02</span><div><h3>Keep your favorites close</h3><p>Save products to your wishlist so you can come back when you’re ready.</p></div></article><article><span>03</span><div><h3>Your own little space</h3><p>Sign in to your portal for orders, support conversations, and account preferences.</p><a href="profile.html">Open your portal <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div></article></div></section>
     <section id="newsletter" class="section-p1 section-m1">
+
         <div class="newstext">
-            <h4>sign up for news letters</h4>
-            <p>fet email updates about our latest shop and <span>special offers</span></p>
+
+            <h4>A little good in your inbox</h4>
+
+            <p>Product news, upcoming events, and community updates. Subscribe and confirm by email.</p>
+
         </div>
+
         <div class="form">
-                <input type="text" placeholder="Your email address">
-                <button class="normal">sign up</button>
+
+                <input type="email" placeholder="Your email address" aria-label="Email for newsletter" required>
+
+                <button class="normal">Subscribe</button>
+
         </div>
+
     </section>
 
-    <footer class="section-p1">
-        <div class="col">
-                <a href="index.html"><img class="logo" src="img/309882121_5132988574724647418299_n.jpg" alt=""></a>
-                <h4>Contact</h4>
-                <p><strong>Address: </strong> W493Rockvale Road. Oconomowoc Wisconsin</p>
-                <p><strong>Phone: </strong> 920 860 6475</p>
-                <p><strong>Hours: </strong> last tuesday - second teusday of next week</p>
-                <div class="follow">
-                    <h4>Follow us</h4>
-                    <div class="icon">
-                        <i class="fab fa-facebook-f"></i>
-                        <i class="fab fa-twitter"></i>
-                         <i class="fab fa-instagram"></i>
-                        <i class="fab fa-pinterest-p"></i>
-                        <i class="fab fa-youtube"></i>
-                    </div>
-                </div>
-        </div>
-
-        <div class="col">
-            <h4>About</h4>
-            <a href="about.html">About us</a>
-            <a href="#">Delivery Information</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms & Conditions</a>
-            <a href="contact.html">Contact us</a>
-        </div>
-        <div class="col">
-            <h4>My Account</h4>
-            <a href="signin.html">Sign In</a>
-            <a href="cart.html">View Cart</a>
-            <a href="wishlist.html">My Wishlist</a>
-            <a href="track.html">Track My Order</a>
-            <a href="help.html">Help</a>
-        </div>
-
-        <div class="col install">
-            <h4>Install App</h4>
-            <p>From App Store or Google Play</p>
-            <div class="row">
-                <img src="img/pay/app.jpg" alt="">
-                <img src="img/pay/play.jpg" alt="">
-            </div>
-            <p>Secured Payment Gateways</p>
-            <img src="img/pay/pay.png" alt="">
-        </div>
-
-        <div class="col footer-newsletter">
-            <h4>Join our community</h4>
-            <p>Exclusive offers, early access and health tips â€” straight to your inbox.</p>
-            <div class="footer-news-form">
-                <input type="email" placeholder="Your email address" aria-label="newsletter email">
-                <button class="normal">Subscribe</button>
-            </div>
-            <small style="color:#666; display:block; margin-top:10px;">We respect your privacy. <a href="privacy.html">Learn more</a></small>
-        </div>
-
-        <div class="copyright">
-            <p>© 2026, WholeHeartedHealth</p>
-        </div>
-    </footer>
-
+    </main>
+<footer class="section-p1 site-footer">
+<div class="col"><a class="footer-brand" href="index.html">Whole-Hearted Health<span>Room for a little more well-being.</span></a><p>Explore our shop, connect with our community,<br>and find your own everyday rhythm.</p></div>
+<div class="col"><h4>Explore</h4><a href="shop.html">Shop</a><a href="events.html">Events</a><a href="about.html">Our story</a><a href="contact.html">Get in touch</a></div>
+<div class="col"><h4>Your space</h4><a href="profile.html">Your portal</a><a href="profile.html#profile-settings">Account settings</a><a href="help.html">Help &amp; ordering</a></div>
+<div class="copyright"><p>&copy; 2026 Whole-Hearted Health</p><div><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div></footer>
 
     <script src="script.js"></script>
+
 </body>
 
 </html>
-
-
 

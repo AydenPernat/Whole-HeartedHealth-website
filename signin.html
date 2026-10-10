@@ -1,229 +1,336 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta http-equic="X-IA-Compatible" content="IE=edge">
-    <meta name="Viewport" content="width-device-width, initial-scale=1.0">
-    <title>Sign In â€” WholeHeartedHealth</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sign In — WholeHeartedHealth</title>
+<meta name="description" content="Explore Whole-Hearted Health products, community events, and your personal customer portal.">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
-    <section id="header">
-        <img src="img/309882121_5132988574724647418299_n.jpg" class="logo" alt="WholeHeartedHealth logo">
+<div id="page-loader" class="page-loader" aria-hidden="true"><div class="loader-mark"><img src="img/logo3.png" alt=""><span class="loader-orbit"></span></div><span class="loader-caption">Whole-Hearted Health</span><span class="loader-line"></span></div>
+<a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header id="header">
+
+        <a class="brand-link" href="index.html"><img src="img/logo3.png" class="logo" alt="Whole-Hearted Health home"></a>
+
         <div>
+
             <ul id="navbar">
+
                 <li><a href="index.html">Home</a></li>
+
                 <li><a href="shop.html">Shop</a></li>
-                <li><a href="blog.html">Blog</a></li>
+
                 <li><a href="about.html">About</a></li>
+
                 <li><a href="contact.html">Contact</a></li>
+
                 <li><a href="events.html">Upcoming Events</a></li>
-                <li id="nav-wishlist"><a href="wishlist.html"><i class="fa-solid fa-clipboard-list"></i></a></li>
-                <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a></li>
+
+                <li id="nav-wishlist"><a href="wishlist.html" aria-label="Wishlist"><i class="fa-solid fa-clipboard-list"></i></a></li>
+
+                <li id="lg-bag"><a href="cart.html" aria-label="Shopping bag"><i class="fa-solid fa-bag-shopping"></i></a></li>
+
                 </ul>
+
         </div>
+
         <div id="mobile">
+
             <button id="menu-toggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false"><i id="bar" class="fa-solid fa-bars"></i></button>
+
         </div>
-    </section>
+
+    </header>
+<main id="main-content">
 
     <section id="page-header" class="about-header">
-        <h2>Account</h2>
+        <div class="page-art" aria-hidden="true"><span></span><span></span><span></span></div>
+        <span class="page-eyebrow">WELCOME IN</span>
+
+        <h1>Account</h1>
+
         <p>Sign in or create an account to continue</p>
+
     </section>
 
     <section class="section-p1">
+
         <div class="auth-card">
+
             <div class="auth-left">
+                <div class="auth-art" aria-hidden="true"><span></span><span></span><span></span></div>
+
                 <h2>Welcome back</h2>
+
                 <p>Sign in to access your orders, wishlist, and faster checkout.</p>
+
                 <div style="margin-top:12px; display:flex; gap:8px;">
-                    <img src="img/309882121_5132988574724647418299_n.jpg" style="width:64px; height:64px; border-radius:8px; background:#fff; padding:6px;" alt="logo">
+
+                    <img src="img/logo3.png" class="auth-brand-logo" alt="Whole-Hearted Health">
+
                     <div>
+
                         <strong>WholeHeartedHealth</strong>
-                        <div style="opacity:0.9; font-size:13px;">Safe & secure checkout</div>
+
+                        <div style="opacity:0.9; font-size:13px;">Your own space for well-being</div>
+
                     </div>
+
                 </div>
+
             </div>
+
             <div class="auth-right">
+
                 <div class="auth-tabs">
+
                     <button id="tab-signin" class="active">Sign In</button>
+
                     <button id="tab-register">Register</button>
+
                 </div>
 
                 <div id="signin-panel" class="auth-form">
-                    <div class="input-group"><input id="signin-email" type="email" placeholder="Email" required></div>
-                    <div class="input-group"><input id="signin-password" type="password" placeholder="Password" required></div>
+
+                    <div class="input-group"><input aria-label="Email" id="signin-email" type="email" placeholder=" " required autocomplete="username"><label for="signin-email">Email address</label></div>
+
+                    <div class="input-group"><input aria-label="Password" id="signin-password" type="password" placeholder=" " required autocomplete="current-password"><label for="signin-password">Password</label><button class="password-toggle" type="button" data-password="signin-password" aria-label="Show password" aria-pressed="false"><i class="fa-solid fa-eye" aria-hidden="true"></i></button></div>
+
                     <div class="auth-actions">
                         <button id="signin-btn" class="normal">Sign In</button>
-                        <a href="#" style="color:#666; text-decoration:none; font-weight:600;">Forgot?</a>
+                        <button id="forgot-btn" class="white" type="button">Forgot password?</button>
                     </div>
-                    <div class="auth-alt">Or sign in with</div>
-                    <small style="display:block; margin-top:10px; color:#666;">Superior account: qwerty@qwerty / 123456789</small>
+                    <button id="resend-btn" class="auth-link-button" type="button">Resend verification email</button>
                 </div>
+                <div id="reset-panel" class="auth-form" style="display:none;">
+                    <h3>Choose a new password</h3>
+                    <div class="input-group"><input aria-label="New password" id="reset-password" type="password" placeholder=" " required autocomplete="new-password"><label for="reset-password">New password</label><button class="password-toggle" type="button" data-password="reset-password" aria-label="Show password" aria-pressed="false"><i class="fa-solid fa-eye" aria-hidden="true"></i></button></div>
+                    <button id="reset-btn" class="normal" type="button">Reset password</button>
+                </div>
+                <p id="auth-message" class="auth-message" role="status" aria-live="polite"></p>
 
                 <div id="register-panel" class="auth-form" style="display:none;">
-                    <div class="input-group"><input id="reg-name" type="text" placeholder="Full name" required></div>
-                    <div class="input-group"><input id="reg-email" type="email" placeholder="Email" required></div>
-                    <div class="input-group input-row"><input id="reg-pass" type="password" placeholder="Password" required></div>
+
+                    <div class="input-group"><input aria-label="Name" id="reg-name" type="text" placeholder=" " required autocomplete="name"><label for="reg-name">Full name</label></div>
+
+                    <div class="input-group"><input aria-label="Email" id="reg-email" type="email" placeholder=" " required autocomplete="email"><label for="reg-email">Email address</label></div>
+
+                    <div class="input-group input-row"><input aria-label="Password" id="reg-pass" type="password" placeholder=" " required autocomplete="new-password"><label for="reg-pass">Password</label><button class="password-toggle" type="button" data-password="reg-pass" aria-label="Show password" aria-pressed="false"><i class="fa-solid fa-eye" aria-hidden="true"></i></button></div>
+
+                    <label class="newsletter-choice"><input type="checkbox" id="reg-newsletter"> <span>Send me newsletters and occasional updates. I can unsubscribe anytime.</span></label>
                     <div class="auth-actions"><button id="register-btn" class="white">Create account</button></div>
-                    <div class="auth-alt">By creating an account you agree to our <a href="terms.html">Terms</a>.</div>
+
+                    <div class="auth-alt">Choose a password you’ll remember.</div>
                 </div>
+
             </div>
+
         </div>
 
         <script>
+
             (function(){
+
                 const qs = new URLSearchParams(window.location.search);
-                const redirect = qs.get('redirect') || 'cart.html';
-                const SUPERIOR_EMAIL = 'qwerty@qwerty';
-                const SUPERIOR_PASSWORD = '123456789';
+
+                const allowedDestinations = new Set(['index.html','shop.html','cart.html','wishlist.html','profile.html','portal.html','admin.html','contact.html','events.html','about.html','help.html','sproduct.html','event-detail.html','privacy.html','terms.html']);
+                function getSignInDestination(requested) {
+                    try {
+                        const target = new URL(requested || 'profile.html', location.href);
+                        const aliases = {'/track.html':'/portal.html','/blog.html':'/events.html'};
+                        if (aliases[target.pathname]) target.pathname = aliases[target.pathname];
+                        if (target.origin !== location.origin || !allowedDestinations.has(target.pathname.slice(1))) return 'profile.html';
+                        return target.pathname + target.search + target.hash;
+                    } catch { return 'profile.html'; }
+                }
+                const redirect = getSignInDestination(qs.get('redirect'));
 
                 const tabSign = document.getElementById('tab-signin');
+
                 const tabReg = document.getElementById('tab-register');
+
                 const signPanel = document.getElementById('signin-panel');
+
                 const regPanel = document.getElementById('register-panel');
+                const resetPanel = document.getElementById('reset-panel');
+                const message = document.getElementById('auth-message');
+                const say = (text, error = false) => { message.textContent = text; message.classList.toggle('error', error); };
+                async function signIn(email, password) {
+                    if (location.protocol === 'file:') {
+                        throw new Error('Sign-in needs the running website server. Open http://localhost:3000/signin.html instead of opening this HTML file directly.');
+                    }
+                    let response;
+                    try {
+                        response = await fetch('/api/auth/signin', {
+                            method: 'POST', signal: AbortSignal.timeout(15000),
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ email, password })
+                        });
+                    } catch {
+                        throw new Error('Could not reach the sign-in server. If you are running locally, start it with npm start and open http://localhost:3000/signin.html.');
+                    }
+                    if (!(response.headers.get('content-type') || '').includes('application/json')) {
+                        throw new Error('This address is not serving the sign-in API. Locally, use http://localhost:3000/signin.html. On Render, deploy this project as a Node web service, not a static site.');
+                    }
+                    const data = await response.json();
+                    if (!response.ok || !data.success) throw new Error(data.error || 'Sign in failed. Please try again.');
+                    return data.user;
+                }
+                if (location.protocol === 'file:') say('Accounts require the server. Open http://localhost:3000/signin.html after running npm start.', true);
 
-                function showSign(){ tabSign.classList.add('active'); tabReg.classList.remove('active'); signPanel.style.display='block'; regPanel.style.display='none'; }
-                function showReg(){ tabReg.classList.add('active'); tabSign.classList.remove('active'); regPanel.style.display='block'; signPanel.style.display='none'; }
 
+                function showSign(){ tabSign.classList.add('active'); tabReg.classList.remove('active'); signPanel.style.display='block'; regPanel.style.display='none'; resetPanel.style.display='none'; }
+                function showReg(){ tabReg.classList.add('active'); tabSign.classList.remove('active'); regPanel.style.display='block'; signPanel.style.display='none'; resetPanel.style.display='none'; }
+
+                document.querySelectorAll('[data-password]').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const input = document.getElementById(button.dataset.password);
+                        const show = input.type === 'password';
+                        input.type = show ? 'text' : 'password';
+                        button.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+                        button.setAttribute('aria-pressed', String(show));
+                        button.querySelector('i').className = show ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+                    });
+                });
                 tabSign.addEventListener('click', showSign);
+
                 tabReg.addEventListener('click', showReg);
 
                 document.getElementById('signin-btn').addEventListener('click', async function(e){
+
                     e.preventDefault();
+
                     const email = document.getElementById('signin-email').value.trim();
+
                     const password = document.getElementById('signin-password').value;
+
                     if (!email || !password) {
-                        alert('Please enter email and password.');
+
+                        say('Please enter email and password.', true);
+
                         return;
+
                     }
 
+                    const button = document.getElementById('signin-btn');
+                    button.disabled = true;
+                    say('Signing in…');
                     try {
-                        const res = await fetch('/api/auth/signin', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ email, password })
-                        });
-                        const data = await res.json();
-                        if (!res.ok || !data.success) {
-                            alert(data.error || 'Sign in failed.');
-                            return;
-                        }
-                        localStorage.setItem('w_user', JSON.stringify(data.user));
-                        if (data.token) localStorage.setItem('w_token', data.token);
+                        const user = await signIn(email, password);
+                        // Authentication lives in the HttpOnly cookie; this is only a display cache.
+                        try { localStorage.setItem('w_user', JSON.stringify(user)); } catch {}
                         window.location.href = redirect;
                     } catch (err) {
-                        const role = (email.toLowerCase() === SUPERIOR_EMAIL && password === SUPERIOR_PASSWORD) ? 'superior' : 'user';
-                        const name = email ? email.split('@')[0] : 'user';
-                        localStorage.setItem('w_user', JSON.stringify({ email, name, role }));
-                        window.location.href = redirect;
+                        say(err.message || 'Sign in failed. Please try again.', true);
+                    } finally {
+                        button.disabled = false;
                     }
+
                 });
 
                 document.getElementById('register-btn').addEventListener('click', async function(e){
+
                     e.preventDefault();
+
                     const email = document.getElementById('reg-email').value.trim();
+
                     const name = document.getElementById('reg-name').value.trim() || (email ? email.split('@')[0] : 'user');
-                    const password = document.getElementById('reg-pass').value || '123456';
-                    if (!email) {
-                        alert('Please enter your email.');
+
+                    const password = document.getElementById('reg-pass').value;
+                    if (!name || !email || !password) {
+                        say('Enter your name, email, and password.', true);
                         return;
+
                     }
 
                     try {
-                        const res = await fetch('/api/auth/signin', {
+
+                        const res = await fetch('/api/auth/register', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ email, password })
+                            body: JSON.stringify({ name, email, password, newsletterOptIn: document.getElementById('reg-newsletter').checked })
                         });
                         const data = await res.json();
-                        if (data.user) {
-                            data.user.name = name;
-                            localStorage.setItem('w_user', JSON.stringify(data.user));
-                            if (data.token) localStorage.setItem('w_token', data.token);
+                        if (!res.ok || !data.success) {
+                            say(data.error || 'Registration failed.', true);
+                            return;
                         }
-                        window.location.href = redirect;
+                        say(data.message || 'Check your email to verify your account.');
+                        document.getElementById('signin-email').value = email;
+                        showSign();
                     } catch (err) {
-                        localStorage.setItem('w_user', JSON.stringify({ email, name, role: 'user' }));
-                        window.location.href = redirect;
+                        say('Registration is unavailable. Please try again.', true);
                     }
                 });
 
+                document.getElementById('resend-btn').addEventListener('click', async () => {
+                    try {
+                    const email = document.getElementById('signin-email').value.trim();
+                    if (!email) return say('Enter your email first.', true);
+                    const response = await fetch('/api/auth/resend-verification', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email}) });
+                    const data = await response.json(); say(data.message || data.error, !response.ok);
+                    } catch { say('The request could not be completed. Please try again.', true); }
+                });
+
+                document.getElementById('forgot-btn').addEventListener('click', async () => {
+                    try {
+                    const email = document.getElementById('signin-email').value.trim();
+                    if (!email) return say('Enter your email first.', true);
+                    const response = await fetch('/api/auth/forgot-password', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email}) });
+                    const data = await response.json(); say(data.message || data.error, !response.ok);
+                    } catch { say('The request could not be completed. Please try again.', true); }
+                });
+
+                const verifyToken = qs.get('verify');
+                if (verifyToken) fetch('/api/auth/verify', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({token:verifyToken}) })
+                    .then(async response => ({ response, data: await response.json() }))
+                    .then(({response,data}) => say(data.message || data.error, !response.ok))
+                    .catch(() => say('Verification is unavailable.', true));
+
+                const resetToken = qs.get('reset');
+                if (resetToken) {
+                    signPanel.style.display='none'; regPanel.style.display='none'; resetPanel.style.display='block';
+                    document.getElementById('reset-btn').addEventListener('click', async () => {
+                    try {
+                        const password = document.getElementById('reset-password').value;
+                        const response = await fetch('/api/auth/reset-password', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({token:resetToken,password}) });
+                        const data = await response.json(); say(data.message || data.error, !response.ok);
+                        if (response.ok) showSign();
+                    } catch { say('The request could not be completed. Please try again.', true); }
+                    });
+                }
+
             })();
+
         </script>
+
     </section>
 
     <!-- Footer -->
-    <footer class="section-p1">
-        <div class="col">
-            <a href="index.html"><img class="logo" src="img/309882121_5132988574724647418299_n.jpg" alt=""></a>
-            <h4>Contact</h4>
-            <p><strong>Address: </strong> W493Rockvale Road. Oconomowoc Wisconsin</p>
-            <p><strong>Phone: </strong> 920 860 6475</p>
-            <p><strong>Hours: </strong> last tuesday - second teusday of next week</p>
-            <div class="follow">
-                <h4>Follow us</h4>
-                <div class="icon">
-                    <i class="fab fa-facebook-f"></i>
-                    <i class="fab fa-twitter"></i>
-                    <i class="fab fa-instagram"></i>
-                    <i class="fab fa-pinterest-p"></i>
-                    <i class="fab fa-youtube"></i>
-                </div>
-            </div>
-        </div>
 
-        <div class="col">
-            <h4>About</h4>
-            <a href="about.html">About us</a>
-            <a href="#">Delivery Information</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms & Conditions</a>
-            <a href="contact.html">Contact us</a>
-        </div>
-        <div class="col">
-            <h4>My Account</h4>
-            <a href="signin.html">Sign In</a>
-            <a href="cart.html">View Cart</a>
-            <a href="wishlist.html">My Wishlist</a>
-            <a href="track.html">Track My Order</a>
-            <a href="help.html">Help</a>
-        </div>
-
-        <div class="col install">
-            <h4>Install App</h4>
-            <p>From App Store or Google Play</p>
-            <div class="row">
-                <img src="img/pay/app.jpg" alt="">
-                <img src="img/pay/play.jpg" alt="">
-            </div>
-            <p>Secured Payment Gateways</p>
-            <img src="img/pay/pay.png" alt="">
-        </div>
-
-        <div class="col footer-newsletter">
-            <h4>Join our community</h4>
-            <p>Exclusive offers, early access and health tips â€” straight to your inbox.</p>
-            <div class="footer-news-form">
-                <input type="email" placeholder="Your email address" aria-label="newsletter email">
-                <button class="normal">Subscribe</button>
-            </div>
-            <small style="color:#666; display:block; margin-top:10px;">We respect your privacy. <a href="privacy.html">Learn more</a></small>
-        </div>
-
-        <div class="copyright">
-            <p>Â© 2026, WholeHeartedHealth</p>
-        </div>
-    </footer>
+    </main>
+<footer class="section-p1 site-footer">
+<div class="col"><a class="footer-brand" href="index.html">Whole-Hearted Health<span>Room for a little more well-being.</span></a><p>Explore our shop, connect with our community,<br>and find your own everyday rhythm.</p></div>
+<div class="col"><h4>Explore</h4><a href="shop.html">Shop</a><a href="events.html">Events</a><a href="about.html">Our story</a><a href="contact.html">Get in touch</a></div>
+<div class="col"><h4>Your space</h4><a href="profile.html">Your portal</a><a href="profile.html#profile-settings">Account settings</a><a href="help.html">Help &amp; ordering</a></div>
+<div class="copyright"><p>&copy; 2026 Whole-Hearted Health</p><div><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div></footer>
 
     <script src="script.js"></script>
+
 </body>
 
 </html>
-
-
 

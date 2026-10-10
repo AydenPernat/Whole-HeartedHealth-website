@@ -1,124 +1,159 @@
 {
-    "products":  [
-                     {
-                         "id":  1,
-                         "name":  "Cartoon Astronaut Tshirt",
-                         "price":  118.19,
-                         "image":  "img/products/f1.jpg",
-                         "images":  [
-                                        "img/products/f1.jpg"
-                                    ],
-                         "category":  "tshirt",
-                         "description":  "Premium cotton comfortable graphic tshirt."
-                     },
-                     {
-                         "id":  2,
-                         "name":  "Casual Wear",
-                         "price":  95,
-                         "image":  "img/products/f1.jpg",
-                         "images":  [
-                                        "img/products/f1.jpg"
-                                    ],
-                         "category":  "casual",
-                         "description":  "Casual lightweight daily wear."
-                     },
-                     {
-                         "id":  3,
-                         "name":  "Summer Collection",
-                         "price":  125.5,
-                         "image":  "img/products/f1.jpg",
-                         "images":  [
-                                        "img/products/f1.jpg"
-                                    ],
-                         "category":  "summer",
-                         "description":  "Breathable summer collection wear."
-                     },
-                     {
-                         "id":  4,
-                         "name":  "Classic Design",
-                         "price":  89.99,
-                         "image":  "img/products/f1.jpg",
-                         "images":  [
-                                        "img/products/f1.jpg"
-                                    ],
-                         "category":  "classic",
-                         "description":  "Classic timeless design."
-                     },
-                     {
-                         "id":  5,
-                         "name":  "Modern Fashion",
-                         "price":  145,
-                         "image":  "img/products/f1.jpg",
-                         "images":  [
-                                        "img/products/f1.jpg"
-                                    ],
-                         "category":  "modern",
-                         "description":  "Modern fashion apparel."
-                     },
-                     {
-                         "id":  6,
-                         "name":  "Premium Wear",
-                         "price":  199.99,
-                         "image":  "img/products/f1.jpg",
-                         "images":  [
-                                        "img/products/f1.jpg"
-                                    ],
-                         "category":  "premium",
-                         "description":  "Luxury premium quality wear."
-                     },
-                     {
-                         "id":  7,
-                         "name":  "Elegant Style",
-                         "price":  110,
-                         "image":  "img/products/f1.jpg",
-                         "images":  [
-                                        "img/products/f1.jpg"
-                                    ],
-                         "category":  "elegant",
-                         "description":  "Elegant evening wear."
-                     },
-                     {
-                         "id":  8,
-                         "name":  "Comfort Plus",
-                         "price":  99.99,
-                         "image":  "img/products/f1.jpg",
-                         "images":  [
-                                        "img/products/f1.jpg"
-                                    ],
-                         "category":  "comfort",
-                         "description":  "Ultra comfortable relaxed fit."
-                     }
-                 ],
-    "events":  [
-                   {
-                       "id":  "spring-wellness-workshop",
-                       "name":  "Spring Wellness Workshop",
-                       "image":  "img/products/f1.jpg",
-                       "date":  "March 21, 2026",
-                       "time":  "10:00 AM - 12:00 PM",
-                       "location":  "WholeHeartedHealth Community Room",
-                       "description":  "This workshop covers simple routines for energy, stress balance, and daily nutrition planning. You will get a guided wellness session, a Q\u0026A block, and a take-home checklist for a 30-day reset."
-                   },
-                   {
-                       "id":  "nutrition-qa-night",
-                       "name":  "Nutrition Q\u0026A Night",
-                       "image":  "img/products/f2.jpg",
-                       "date":  "April 11, 2026",
-                       "time":  "6:30 PM - 8:00 PM",
-                       "location":  "Online Webinar + Live Chat",
-                       "description":  "Join our certified nutrition coaches for an open Q\u0026A session on gut health, clean pantry swaps, and easy meal prep ideas. Bring your questions and leave with actionable meal routines."
-                   },
-                   {
-                       "id":  "summer-product-preview",
-                       "name":  "Summer Product Preview",
-                       "image":  "img/products/f3.jpg",
-                       "date":  "May 3, 2026",
-                       "time":  "1:00 PM - 3:00 PM",
-                       "location":  "Main Storefront",
-                       "description":  "See upcoming seasonal products before launch and get first access signup at the event. Meet the team, test samples, and hear how each product fits into your routine."
-                   }
-               ],
-    "sessions":  [
-
-                 ]
+  "products": [],
+  "events": [
+    {
+      "id": "this-is-a-test-1791589703106",
+      "name": "this is a test",
+      "image": "/uploads/1791589703083-89ffd852408b.png",
+      "date": "today",
+      "time": "asdf",
+      "location": "asdf",
+      "description": "asdf"
+    }
+  ],
+  "sessions": [
+    {
+      "version": 3,
+      "tokenHash": "458ae4ad75f1c07eba16891c00793eb4c6ba56ba69b21113622d2ba876bd0a1f",
+      "user": {
+        "id": "owner",
+        "name": "Owner",
+        "email": "superior@wholeheartedhealth.com",
+        "role": "owner",
+        "verified": true,
+        "newsletterOptIn": false
+      },
+      "expiresAt": 1794183018561
+    }
+  ],
+  "users": [
+    {
+      "id": "fba1ab7d-3218-4f12-8f1d-68d0fd5cd62f",
+      "name": "aydenpernat",
+      "email": "aydenpernat@icloud.com",
+      "passwordHash": "05ed2f6f965cee074795d2a069abcdff:7c476b36f04841c07cfeedc6b50dc130839d952142cd3d81ed72316072533eb6222bf85b200544a0b715cd984544210660f5ecc9a761433e382f5e8ff6813660",
+      "role": "user",
+      "verifiedAt": null,
+      "newsletterOptIn": false,
+      "createdAt": "2026-10-09T23:42:42.585Z"
+    }
+  ],
+  "orders": [],
+  "subscribers": [
+    {
+      "id": "30b3c125-9fb1-4100-9ff1-e5fed3e140a8",
+      "email": "superior@wholeheartedhealth.com",
+      "verifiedAt": null,
+      "subscribedAt": "2026-10-10T00:02:27.470Z"
+    }
+  ],
+  "supportRequests": [],
+  "tokens": [
+    {
+      "id": "c8da632c-a85e-4455-9e79-d065d571c22f",
+      "type": "verify-account",
+      "email": "aydenpernat@icloud.com",
+      "tokenHash": "ba085da2b2b261f8e4995d83755c79911e8b648e23910af59209b6e9e088e496",
+      "expiresAt": 1791675762585
+    },
+    {
+      "id": "236eb790-9ccc-4a7e-8e2e-ceec18ce46c8",
+      "type": "verify-newsletter",
+      "email": "superior@wholeheartedhealth.com",
+      "tokenHash": "14b8bf883212480219f5a60d7f391f07d73cea885acf8d942b8844dbb818f29d",
+      "expiresAt": 1791676947471
+    }
+  ],
+  "navigation": [
+    {
+      "visible": true,
+      "audience": "everyone",
+      "presentation": "text",
+      "id": "home",
+      "label": "Home",
+      "url": "index.html",
+      "icon": "fa-house"
+    },
+    {
+      "visible": false,
+      "audience": "everyone",
+      "presentation": "text",
+      "id": "shop",
+      "label": "Shop",
+      "url": "shop.html",
+      "icon": "fa-store"
+    },
+    {
+      "visible": true,
+      "audience": "everyone",
+      "presentation": "text",
+      "id": "about",
+      "label": "About",
+      "url": "about.html",
+      "icon": "fa-heart"
+    },
+    {
+      "visible": true,
+      "audience": "everyone",
+      "presentation": "text",
+      "id": "contact",
+      "label": "Contact",
+      "url": "contact.html",
+      "icon": "fa-envelope"
+    },
+    {
+      "visible": true,
+      "audience": "everyone",
+      "presentation": "text",
+      "id": "events",
+      "label": "Upcoming Events",
+      "url": "events.html",
+      "icon": "fa-calendar-days"
+    },
+    {
+      "visible": false,
+      "audience": "everyone",
+      "presentation": "icon",
+      "id": "wishlist",
+      "label": "Wishlist",
+      "url": "wishlist.html",
+      "icon": "fa-clipboard-list"
+    },
+    {
+      "visible": false,
+      "audience": "everyone",
+      "presentation": "icon",
+      "id": "cart",
+      "label": "Shopping bag",
+      "url": "cart.html",
+      "icon": "fa-bag-shopping"
+    },
+    {
+      "visible": true,
+      "audience": "everyone",
+      "presentation": "icon",
+      "id": "account",
+      "label": "Your portal / Sign in",
+      "url": "profile.html",
+      "icon": "fa-circle-user"
+    },
+    {
+      "visible": true,
+      "audience": "admins",
+      "presentation": "icon",
+      "id": "admin",
+      "label": "Admin panel",
+      "url": "admin.html",
+      "icon": "fa-shield-halved"
+    },
+    {
+      "visible": false,
+      "audience": "everyone",
+      "presentation": "text",
+      "id": "help",
+      "label": "Help & ordering",
+      "url": "help.html",
+      "icon": "fa-circle-question"
+    }
+  ]
 }
